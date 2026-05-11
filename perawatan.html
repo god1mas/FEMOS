@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Perawatan Pada Masa Menopause</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles/style.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: #ffe5eb;
+      color: #161b31;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      background-image: url("img/perawatan-bg.png");
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      padding: 38px 0 70px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1700px;
+      margin: 0 auto;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 100px;
+    }
+
+    .hero-text {
+      max-width: 850px;
+      margin-top: 35px;
+    }
+
+    .hero-text h1 {
+      font-size: 60px;
+      line-height: 1.18;
+      font-weight: 600;
+      color: #8a0d45;
+      margin-bottom: 14px;
+      letter-spacing: -1px;
+    }
+
+    .hero-text p {
+      max-width: 850px;
+      font-size: 25px;
+      line-height: 1.25;
+      font-weight: 500;
+      color: #060606;
+    }
+
+    /* ================= CONTENT AREA ================= */
+
+    .content-section {
+      margin-top: -15px;
+      display: grid;
+      grid-template-columns: 430px 1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    /* ================= SIDEBAR ================= */
+
+    .care-menu {
+      width: 430px;
+      min-height: 440px;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.34);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.22);
+      padding: 30px 0;
+      position: relative;
+    }
+
+    .care-tab {
+      width: 500px;
+      min-height: 118px;
+
+      display: grid;
+      grid-template-columns: 1fr 78px 35px;
+      align-items: center;
+      gap: 14px;
+
+      margin-left: 6px;
+      margin-bottom: 0;
+      padding: 16px 30px 16px 22px;
+
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 28px;
+
+      box-shadow: 0 8px 14px rgba(0, 0, 0, 0.25);
+      transition: 0.3s ease;
+      position: relative;
+      z-index: 2;
+      text-align: left;
+    }
+
+    .care-tab:hover,
+    .care-tab.active {
+      transform: translateX(20px);
+      background: #ffffff;
+    }
+
+    .care-tab h3 {
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .care-tab img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      justify-self: center;
+    }
+
+    .care-tab .arrow {
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 300;
+    }
+
+    .care-tab.fisik h3,
+    .care-tab.fisik .arrow {
+      color: #ef5aa1;
+    }
+
+    .care-tab.emosi h3,
+    .care-tab.emosi .arrow {
+      color: #9559bf;
+    }
+
+    .care-tab.sosial h3,
+    .care-tab.sosial .arrow {
+      color: #ff8068;
+    }
+
+    /* ================= RESULT CARD ================= */
+
+    .result-card {
+      width: 100%;
+      max-width: 900px;
+      min-height: 650px;
+
+      background: rgba(255, 251, 251, 0.9);
+      border-radius: 36px;
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+
+      padding: 35px 85px 55px;
+      transition: 0.3s ease;
+    }
+
+    .result-card.fade {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .result-subtitle {
+      font-size: 20px;
+      font-weight: 800;
+      color: #00639c;
+      margin-bottom: 38px;
+    }
+
+    .care-list {
+      list-style: none;
+    }
+
+    .care-list li {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      column-gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .care-number {
+      font-size: 25px;
+      line-height: 1.1;
+      font-weight: 800;
+      color: #171c34;
+      text-align: right;
+    }
+
+    .care-list h2 {
+      font-size: 25px;
+      line-height: 1.12;
+      font-weight: 800;
+      color: #171c34;
+      margin-bottom: 8px;
+    }
+
+    .care-list p {
+      font-size: 16px;
+      line-height: 1.18;
+      font-weight: 500;
+      color: #171c34;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 1400px) {
+      .hero-text h1 {
+        font-size: 62px;
+      }
+
+      .hero-text p {
+        font-size: 25px;
+      }
+
+      .content-section {
+        grid-template-columns: 370px 1fr;
+        gap: 45px;
+      }
+
+      .care-menu {
+        width: 370px;
+      }
+
+      .care-tab {
+        width: 430px;
+      }
+
+      .result-card {
+        padding: 35px 60px 50px;
+      }
+
+      .care-list h2 {
+        font-size: 34px;
+      }
+
+      .care-list p {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      .page {
+        padding-bottom: 60px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 70px 0;
+      }
+
+      .hero-text {
+        max-width: 100%;
+      }
+
+      .hero-text h1 {
+        font-size: 50px;
+      }
+
+      .hero-text p {
+        font-size: 22px;
+      }
+
+      .content-section {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .care-menu {
+        width: 100%;
+        min-height: auto;
+        display: grid;
+        gap: 16px;
+        padding: 20px;
+      }
+
+      .care-tab {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .care-tab:hover,
+      .care-tab.active {
+        transform: translateX(0);
+      }
+
+      .result-card {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: 90%;
+      }
+
+      .back-btn {
+        width: 150px;
+        height: 52px;
+        font-size: 18px;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero-text h1 {
+        font-size: 37px;
+      }
+
+      .hero-text p {
+        font-size: 18px;
+      }
+
+      .care-tab {
+        min-height: 95px;
+        grid-template-columns: 1fr 55px 22px;
+        padding: 14px 18px;
+      }
+
+      .care-tab h3 {
+        font-size: 16px;
+        white-space: normal;
+      }
+
+      .care-tab img {
+        width: 52px;
+        height: 52px;
+      }
+
+      .care-tab .arrow {
+        font-size: 30px;
+      }
+
+      .result-card {
+        min-height: auto;
+        padding: 28px 24px 35px;
+        border-radius: 28px;
+      }
+
+      .result-subtitle {
+        font-size: 17px;
+        margin-bottom: 26px;
+      }
+
+      .care-list li {
+        grid-template-columns: 38px 1fr;
+        column-gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .care-number {
+        font-size: 28px;
+      }
+
+      .care-list h2 {
+        font-size: 25px;
+      }
+
+      .care-list p {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <div class="container">
+
+      <a href="index.html" class="back-btn">Back</a>
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-text">
+          <h1>
+            Perawatan Pada Masa<br />
+            Menopause
+          </h1>
+
+          <p>
+            Menopause adalah perjalanan setiap wanita yang unik.<br />
+            Pilih area perawatan yang paling anda rasakan saat ini<br />
+            untuk mendapatkan panduan dan dukungan yang tepat.
+          </p>
+        </div>
+      </section>
+
+      <!-- CONTENT -->
+      <section class="content-section">
+
+        <!-- LEFT MENU -->
+        <div class="care-menu">
+
+          <button class="care-tab fisik active" data-care="fisik">
+            <h3>Perawatan Kondisi Fisik</h3>
+            <img src="img/icon-fisik.png" alt="Perawatan Fisik" />
+            <span class="arrow">&gt;</span>
+          </button>
+
+          <button class="care-tab emosi" data-care="emosi">
+            <h3>Perawatan Kondisi Emosi</h3>
+            <img src="img/icon-emosi.png" alt="Perawatan Emosi" />
+            <span class="arrow">&gt;</span>
+          </button>
+
+          <button class="care-tab sosial" data-care="sosial">
+            <h3>Perawatan Kondisi Sosial</h3>
+            <img src="img/icon-sosial.png" alt="Perawatan Sosial" />
+            <span class="arrow">&gt;</span>
+          </button>
+
+        </div>
+
+        <!-- RIGHT RESULT -->
+        <div class="result-card" id="resultCard">
+
+          <p class="result-subtitle" id="resultSubtitle">
+            Perawatan Fisik Yang Disarankan
+          </p>
+
+          <ul class="care-list" id="careList"></ul>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    const careData = {
+      fisik: {
+        subtitle: "Perawatan Fisik Yang Disarankan",
+        items: [
+          {
+            title: "Kompres Dingin & Pakaian Kering",
+            desc: "Redakan rasa panas dengan cara sederhana"
+          },
+          {
+            title: "Rutinitas Tidur Nyenyak",
+            desc: "Ciptakan kebiasaan tidur yang berkualitas"
+          },
+          {
+            title: "Hidrasi Cukup",
+            desc: "Minum air yang cukup sepanjang hari"
+          },
+          {
+            title: "Nutrisi Seimbang",
+            desc: "Pilih makanan bergizi untuk tubuh lebih fit"
+          },
+          {
+            title: "Olahraga Ringan",
+            desc: "Aktivitas ringan rutin untuk kebugaran"
+          }
+        ]
+      },
+
+      emosi: {
+        subtitle: "Perawatan Kondisi Emosi yang Disarankan",
+        items: [
+          {
+            title: "Relaksasi",
+            desc: "Luangkan waktu untuk relaksasi tubuh dan pikiran setiap hari"
+          },
+          {
+            title: "Jurnal Emosi",
+            desc: "Tuliskan perasaan anda untuk membantu memahami diri"
+          },
+          {
+            title: "Teknik Napas",
+            desc: "Latihan napas dalam untuk menenangkan pikiran"
+          },
+          {
+            title: "Merawat Diri",
+            desc: "Berikan waktu khusus untuk merawat diri sendiri"
+          },
+          {
+            title: "Menenangkan Pikiran",
+            desc: "Fokus pada momen sekarang untuk mengurangi stress"
+          },
+          {
+            title: "Komunikasi Profesional",
+            desc: "Bicarakan dengan ahli saat anda membutuhkan dukungan"
+          }
+        ]
+      },
+
+      sosial: {
+        subtitle: "Perawatan Kondisi Sosial yang Disarankan",
+        items: [
+          {
+            title: "Bangun komunikasi terbuka",
+            desc: "Bicarakan perasaan dan kebutuhan anda"
+          },
+          {
+            title: "Quality Time Dengan Pasangan/Keluarga",
+            desc: "Luangkan waktu berkualitas bersama"
+          },
+          {
+            title: "Bergabung Komunita",
+            desc: "Temukan komunitas yang saling mendukung"
+          },
+          {
+            title: "Ruang berbagi",
+            desc: "Berbagi cerita dapat meringankan beban"
+          },
+          {
+            title: "Dukungan sosial",
+            desc: "Mintalah dukungan dari orang terdekat"
+          }
+        ]
+      }
+    };
+
+    const tabs = document.querySelectorAll(".care-tab");
+    const resultCard = document.getElementById("resultCard");
+    const resultSubtitle = document.getElementById("resultSubtitle");
+    const careList = document.getElementById("careList");
+
+    function renderCare(type) {
+      const selectedData = careData[type];
+
+      resultCard.classList.add("fade");
+
+      setTimeout(() => {
+        resultSubtitle.textContent = selectedData.subtitle;
+
+        careList.innerHTML = selectedData.items.map((item, index) => {
+          return `
+            <li>
+              <span class="care-number">${index + 1}.</span>
+              <div>
+                <h2>${item.title}</h2>
+                <p>${item.desc}</p>
+              </div>
+            </li>
+          `;
+        }).join("");
+
+        resultCard.classList.remove("fade");
+      }, 180);
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(item => item.classList.remove("active"));
+        tab.classList.add("active");
+
+        const careType = tab.getAttribute("data-care");
+        renderCare(careType);
+      });
+    });
+
+    renderCare("fisik");
+  </script>
+
+</body>
+</html>

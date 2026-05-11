@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Edukasi - Solusi Sehat Menopause</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles/style.css" />
+
+  <style>
+    .container {
+      width: 94%;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    /* ================= SECTION DESKRIPSI ================= */
+
+    .section-deskripsi {
+      width: 100%;
+      min-height: 100vh;
+      background-image: url("img/edukasi.png");
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      position: relative;
+      padding: 68px 0 80px;
+    }
+
+    .deskripsi-content {
+      min-height: calc(100vh - 160px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-text {
+      width: 44%;
+      margin-left: 55px;
+      margin-top: -40px;
+    }
+
+    .hero-text h1 {
+      font-size: 64px;
+      line-height: 1.22;
+      font-weight: 800;
+      color: #42445a;
+      margin-bottom: 28px;
+      letter-spacing: -1px;
+    }
+
+    .hero-text h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #006aa6;
+      margin-bottom: 30px;
+    }
+
+    .hero-text p {
+      max-width: 700px;
+      font-size: 24px;
+      line-height: 1.25;
+      color: #42445a;
+      font-weight: 700;
+      text-align: justify;
+    }
+
+    /* ================= SECTION PANDUAN ================= */
+
+    .section-panduan {
+      width: 100%;
+      background: #f8dadd;
+      padding: 70px 0 95px;
+    }
+
+    .solution-title {
+      margin-bottom: 40px;
+    }
+
+    .solution-title h2 {
+      font-size: 48px;
+      line-height: 1.15;
+      font-weight: 800;
+      color: #42445a;
+      margin-bottom: 4px;
+    }
+
+    .solution-title p {
+      font-size: 22px;
+      line-height: 1.3;
+      font-weight: 800;
+      color: #006aa6;
+    }
+
+    .solution-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .solution-card {
+      min-height: 880px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 36px;
+      padding: 42px 28px 38px;
+      box-shadow: 0 9px 18px rgba(0, 0, 0, 0.4);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      transition: 0.3s ease;
+    }
+
+    .solution-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .solution-card h3 {
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .solution-card.fisik h3 {
+      color: #e75a9f;
+    }
+
+    .solution-card.emosi h3 {
+      color: #955dbb;
+    }
+
+    .solution-card.sosial h3 {
+      color: #ff846d;
+    }
+
+    .main-icon {
+      width: 210px;
+      height: 210px;
+      margin-bottom: 26px;
+      border-radius: 50%;
+      object-fit: contain;
+    }
+
+    .card-desc {
+      font-size: 17px;
+      line-height: 1.35;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .solution-card.fisik .card-desc {
+      color: #e973aa;
+    }
+
+    .solution-card.emosi .card-desc {
+      color: #9d78bf;
+    }
+
+    .solution-card.sosial .card-desc {
+      color: #ff6241;
+    }
+
+    .symptom-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 24px;
+      row-gap: 36px;
+      margin-bottom: 52px;
+    }
+
+    .symptom-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .symptom-item img {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+
+    .symptom-item p {
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 500;
+      color: #34364f;
+    }
+
+    .btn-pilih {
+      margin-top: auto;
+      min-width: 150px;
+      height: 62px;
+      padding: 0 38px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 40px;
+      color: white;
+      font-size: 24px;
+      font-weight: 800;
+
+      transition: 0.3s ease;
+    }
+
+    .fisik .btn-pilih {
+      background: #e75a9f;
+    }
+
+    .emosi .btn-pilih {
+      background: #955dbb;
+    }
+
+    .sosial .btn-pilih {
+      background: #ff846d;
+    }
+
+    .btn-pilih:hover {
+      transform: translateY(-3px);
+      filter: brightness(0.95);
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 1350px) {
+      .hero-text {
+        width: 52%;
+      }
+
+      .hero-text h1 {
+        font-size: 54px;
+      }
+
+      .hero-text p {
+        font-size: 21px;
+      }
+
+      .solution-cards {
+        gap: 28px;
+      }
+
+      .solution-card {
+        padding: 36px 22px;
+      }
+
+      .solution-card h3 {
+        font-size: 27px;
+      }
+
+      .symptom-grid {
+        column-gap: 14px;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      .section-deskripsi {
+        min-height: auto;
+        padding: 45px 0 90px;
+        background-position: center top;
+      }
+
+      .back-wrapper {
+        margin-left: 0;
+      }
+
+      .deskripsi-content {
+        min-height: auto;
+        padding: 80px 0 40px;
+      }
+
+      .hero-text {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0;
+
+        background: rgba(255, 255, 255, 0.58);
+        border-radius: 30px;
+        padding: 35px;
+      }
+
+      .hero-text h1 {
+        font-size: 46px;
+      }
+
+      .hero-text p {
+        font-size: 20px;
+      }
+
+      .solution-title h2 {
+        font-size: 40px;
+      }
+
+      .solution-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .solution-card {
+        min-height: auto;
+      }
+
+      .symptom-grid {
+        max-width: 680px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: 90%;
+      }
+
+      .section-deskripsi {
+        padding: 35px 0 70px;
+      }
+
+      .back-btn {
+        width: 150px;
+        height: 52px;
+        font-size: 18px;
+      }
+
+      .deskripsi-content {
+        padding: 55px 0 20px;
+      }
+
+      .hero-text {
+        padding: 25px;
+      }
+
+      .hero-text h1 {
+        font-size: 34px;
+      }
+
+      .hero-text h3 {
+        font-size: 18px;
+      }
+
+      .hero-text p {
+        font-size: 16px;
+        text-align: left;
+      }
+
+      .section-panduan {
+        padding: 50px 0 70px;
+      }
+
+      .solution-title h2 {
+        font-size: 32px;
+      }
+
+      .solution-title p {
+        font-size: 16px;
+      }
+
+      .solution-card {
+        border-radius: 28px;
+        padding: 30px 18px;
+      }
+
+      .solution-card h3 {
+        font-size: 24px;
+      }
+
+      .main-icon {
+        width: 160px;
+        height: 160px;
+      }
+
+      .symptom-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 28px;
+      }
+
+      .symptom-item img {
+        width: 78px;
+        height: 78px;
+      }
+
+      .btn-pilih {
+        height: 54px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= SECTION DESKRIPSI ================= -->
+  <section class="section-deskripsi">
+
+    <div class="container">
+
+      <div class="back-wrapper">
+        <a href="index.html" class="back-btn">Back</a>
+      </div>
+
+      <div class="deskripsi-content">
+
+        <div class="hero-text">
+          <h1>
+            Solusi Sehat Di Masa<br />
+            Menopause
+          </h1>
+
+          <h3>Deskripsi (Lebih lengkap)</h3>
+
+          <p>
+            Solusi Sehat di Masa Menopause membantu Anda menemukan langkah sehat
+            untuk menjaga kondisi fisik, menyeimbangkan emosi, dan memperkuat
+            dukungan sosial agar hidup tetap nyaman dan bermakna.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= SECTION PANDUAN ================= -->
+  <section class="section-panduan">
+
+    <div class="container">
+
+      <div class="solution-title">
+        <h2>Pilih solusi sehat sesuai dengan kondisi anda</h2>
+        <p>
+          (Untuk meningkatkan kesehatan secara paripurna di masa menopause,
+          silahkan di lihat panduan berikut)
+        </p>
+      </div>
+
+      <div class="solution-cards">
+
+        <!-- CARD FISIK -->
+        <div class="solution-card fisik">
+
+          <h3>Solusi Sehat Fisik</h3>
+
+          <img
+            src="img/solusi-fisik-main.png"
+            alt="Solusi Sehat Fisik"
+            class="main-icon"
+          />
+
+          <p class="card-desc">
+            Perubahan yang dirasakan pada tubuh
+          </p>
+
+          <div class="symptom-grid">
+
+            <div class="symptom-item">
+              <img src="img/fisik-hot-flashes.png" alt="Hot flashes" />
+              <p>Hot flashes<br />(berkeringat malam)</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/fisik-insomnia.png" alt="Gangguan tidur" />
+              <p>Gangguan tidur<br />(insomnia)</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/fisik-kelelahan.png" alt="Kelelahan" />
+              <p>Kelelahan</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/fisik-nyeri-sendi.png" alt="Nyeri sendi" />
+              <p>Nyeri sendi<br />dan otot</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/fisik-sakit-kepala.png" alt="Sakit kepala" />
+              <p>Sakit kepala</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/fisik-berat-badan.png" alt="Perubahan berat badan" />
+              <p>Perubahan<br />berat badan</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/fisik-jantung.png" alt="Jantung berdebar" />
+              <p>Jantung<br />berdebar</p>
+            </div>
+
+          </div>
+
+          <a href="solusi/solusi-fisik.html" class="btn-pilih">Pilih</a>
+
+        </div>
+
+        <!-- CARD EMOSI -->
+        <div class="solution-card emosi">
+
+          <h3>Solusi Sehat Emosi</h3>
+
+          <img
+            src="img/solusi-emosi-main.png"
+            alt="Solusi Sehat Emosi"
+            class="main-icon"
+          />
+
+          <p class="card-desc">
+            Perubahan pada suasana hati dan emosi
+          </p>
+
+          <div class="symptom-grid">
+
+            <div class="symptom-item">
+              <img src="img/emosi-marah.png" alt="Mudah marah" />
+              <p>Mudah marah</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/emosi-cemas.png" alt="Cemas atau khawatir" />
+              <p>Cemas atau<br />khawatir</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/emosi-sedih.png" alt="Sedih atau murung" />
+              <p>Sedih atau<br />murung</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/emosi-konsentrasi.png" alt="Sulit berkonsentrasi" />
+              <p>Sulit<br />berkonsentrasi</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/emosi-mood.png" alt="Perubahan mood" />
+              <p>Perubahan<br />mood</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/emosi-tersinggung.png" alt="Mudah tersinggung" />
+              <p>Mudah<br />tersinggung</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/emosi-motivasi.png" alt="Kurang motivasi" />
+              <p>Kurang motivasi<br />dan semangat</p>
+            </div>
+
+          </div>
+
+          <a href="solusi/solusi-emosi.html" class="btn-pilih">Pilih</a>
+
+        </div>
+
+        <!-- CARD SOSIAL -->
+        <div class="solution-card sosial">
+
+          <h3>Solusi Sehat Gejala sosial</h3>
+
+          <img
+            src="img/solusi-sosial-main.png"
+            alt="Solusi Sehat Sosial"
+            class="main-icon"
+          />
+
+          <p class="card-desc">
+            Dampak pada interaksi dan aktivitas sosial
+          </p>
+
+          <div class="symptom-grid">
+
+            <div class="symptom-item">
+              <img src="img/sosial-menarik-diri.png" alt="Menarik diri" />
+              <p>Menarik diri dari<br />lingkungan sosial</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/sosial-kesepian.png" alt="Merasa kesepian" />
+              <p>Merasa<br />kesepian</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/sosial-interaksi.png" alt="Sulit berinteraksi" />
+              <p>Sulit berinteraksi<br />dengan orang lain</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/sosial-minat.png" alt="Kehilangan minat" />
+              <p>Kehilangan minat<br />pada aktivitas sosial</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/sosial-menyendiri.png" alt="Lebih memilih menyendiri" />
+              <p>Lebih memilih<br />menyendiri</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/sosial-komunikasi.png" alt="Kesulitan berkomunikasi" />
+              <p>Kesulitan berkomunikasi<br />secara terbuka</p>
+            </div>
+
+            <div class="symptom-item">
+              <img src="img/sosial-acara.png" alt="Menghindari acara" />
+              <p>Menghindari acara<br />atau pertemuan</p>
+            </div>
+
+          </div>
+
+          <a href="solusi/solusi-sosial.html" class="btn-pilih">Pilih</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Solusi Sehat Fisik - FEMOS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../styles/style.css" />
+
+  <style>
+
+    .container {
+      width: 88%;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    /* ================= SECTION SOLUSI SEHAT ================= */
+
+    .section-solusi {
+      min-height: 650px;
+      background: #f7f7f7;
+      position: relative;
+      padding: 70px 0 45px;
+      overflow: hidden;
+    }
+
+    .back-btn {
+      width: 190px;
+      height: 58px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 2px solid #222;
+      border-radius: 40px;
+
+      font-size: 20px;
+      font-weight: 800;
+      color: #222;
+
+      background: rgba(255, 255, 255, 0.1);
+      transition: 0.3s ease;
+      margin-bottom: 55px;
+    }
+
+    .back-btn:hover {
+      background: #222;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .solusi-card {
+      width: 78%;
+      min-height: 350px;
+
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 28px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+
+      padding: 42px 50px;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .solusi-card h1 {
+      font-size: 44px;
+      line-height: 1.15;
+      font-weight: 800;
+      color: #e45a9b;
+      margin-bottom: 16px;
+    }
+
+    .solusi-card .subtitle {
+      font-size: 18px;
+      line-height: 1.5;
+      color: #e66aa3;
+      font-weight: 600;
+      margin-bottom: 35px;
+    }
+
+    .symptom-banner {
+    width: 100%;
+    margin-top: 10px;
+    }
+
+    .symptom-banner img {
+    width: 100%;
+    max-width: 1250px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    }
+
+    .hero-illustration {
+      position: absolute;
+      right: 85px;
+      top: 145px;
+      width: 430px;
+      z-index: 1;
+      opacity: 0.98;
+    }
+
+    /* ================= SECTION DETAIL ================= */
+
+    .section-detail {
+      background: #c95d83;
+      padding: 85px 0 100px;
+    }
+
+    .detail-header {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 55px;
+    }
+
+    .detail-header h2 {
+      font-size: 44px;
+      line-height: 1.2;
+      color: #ffffff;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .detail-header p {
+      font-size: 19px;
+      line-height: 1.6;
+      color: #ffe8ef;
+      font-weight: 500;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .detail-card {
+      background: #fff7f8;
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 8px 18px rgba(75, 20, 45, 0.2);
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 22px;
+      align-items: flex-start;
+      transition: 0.3s ease;
+    }
+
+    .detail-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 24px rgba(75, 20, 45, 0.28);
+    }
+
+    .number {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #e65d9c;
+      color: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 26px;
+      font-weight: 800;
+      box-shadow: 0 8px 15px rgba(230, 93, 156, 0.35);
+    }
+
+    .detail-content h3 {
+      font-size: 28px;
+      line-height: 1.25;
+      color: #8a0d45;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .detail-content .desc {
+      font-size: 18px;
+      line-height: 1.45;
+      color: #3f4157;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .tips-box {
+      background: #ffc2d3;
+      border-radius: 20px;
+      padding: 20px 24px;
+    }
+
+    .tips-box ul {
+      padding-left: 22px;
+    }
+
+    .tips-box li {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #38394f;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 1200px) {
+      .solusi-card {
+        width: 100%;
+      }
+
+      .hero-illustration {
+        position: static;
+        width: 360px;
+        margin: 35px auto 0;
+      }
+
+      .symptom-row {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+      }
+
+      .section-solusi {
+        padding: 40px 0 50px;
+      }
+
+      .back-btn {
+        width: 145px;
+        height: 50px;
+        font-size: 17px;
+        margin-bottom: 35px;
+      }
+
+      .solusi-card {
+        padding: 30px 22px;
+        border-radius: 24px;
+      }
+
+      .solusi-card h1 {
+        font-size: 31px;
+      }
+
+      .solusi-card .subtitle {
+        font-size: 15px;
+      }
+
+      .symptom-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 18px;
+      }
+
+      .symptom-item img {
+        width: 90px;
+        height: 90px;
+      }
+
+      .section-detail {
+        padding: 60px 0 70px;
+      }
+
+      .detail-header h2 {
+        font-size: 32px;
+      }
+
+      .detail-header p {
+        font-size: 16px;
+      }
+
+      .detail-card {
+        grid-template-columns: 1fr;
+        padding: 26px 22px;
+      }
+
+      .number {
+        width: 54px;
+        height: 54px;
+        font-size: 22px;
+      }
+
+      .detail-content h3 {
+        font-size: 24px;
+      }
+
+      .detail-content .desc {
+        font-size: 16px;
+      }
+
+      .tips-box li {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= SECTION SOLUSI SEHAT ================= -->
+  <section class="section-solusi">
+
+    <div class="container">
+
+      <a href="../edukasi.html" class="back-btn">Back</a>
+
+      <div class="solusi-card">
+
+        <h1>Solusi Sehat Kondisi Fisik di Masa Menopause</h1>
+
+        <p class="subtitle">
+          Temukan cara menjaga kesehatan tubuh dan mengurangi keluhan fisik
+          yang umum dirasakan saat menopause.
+        </p>
+
+        <div class="symptom-banner">
+        <img
+            src="../img/solusi-fisik.png"
+            alt="Gejala fisik menopause"
+        />
+        </div>
+
+      </div>
+
+      <img
+        src="../img/hero-solusi-fisik.png"
+        alt="Ilustrasi Solusi Sehat Fisik"
+        class="hero-illustration"
+      />
+
+    </div>
+
+  </section>
+
+  <!-- ================= SECTION DETAIL ================= -->
+  <section class="section-detail">
+
+    <div class="container">
+
+      <div class="detail-header">
+        <h2>Panduan Solusi Sehat Fisik</h2>
+        <p>
+          Terapkan langkah sederhana berikut secara rutin untuk membantu tubuh
+          tetap bugar, nyaman, dan lebih siap menghadapi perubahan menopause.
+        </p>
+      </div>
+
+      <div class="detail-grid">
+
+        <!-- DETAIL 1 -->
+        <div class="detail-card">
+          <div class="number">1</div>
+
+          <div class="detail-content">
+            <h3>Aktivitas Fisik Rutin</h3>
+
+            <p class="desc">
+              Olahraga teratur membantu menjaga kekuatan otot, kepadatan tulang,
+              dan kesehatan jantung.
+            </p>
+
+            <div class="tips-box">
+              <ul>
+                <li>Lakukan olahraga sedang 30 menit, 3–5 kali seminggu.</li>
+                <li>Pilih aktivitas seperti jalan cepat, bersepeda, atau berenang.</li>
+                <li>Tambahkan latihan kekuatan ringan 2 kali seminggu.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAIL 2 -->
+        <div class="detail-card">
+          <div class="number">2</div>
+
+          <div class="detail-content">
+            <h3>Nutrisi Seimbang</h3>
+
+            <p class="desc">
+              Makanan bergizi membantu tubuh tetap berenergi dan menjaga
+              keseimbangan hormon.
+            </p>
+
+            <div class="tips-box">
+              <ul>
+                <li>Perbanyak sayur, buah, biji-bijian, dan protein tanpa lemak.</li>
+                <li>Cukupi kalsium dan vitamin D untuk kesehatan tulang.</li>
+                <li>Batasi gula, garam, dan makanan olahan.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAIL 3 -->
+        <div class="detail-card">
+          <div class="number">3</div>
+
+          <div class="detail-content">
+            <h3>Istirahat yang Berkualitas</h3>
+
+            <p class="desc">
+              Tidur yang cukup membantu tubuh pulih dan menjaga keseimbangan
+              hormon serta suasana hati.
+            </p>
+
+            <div class="tips-box">
+              <ul>
+                <li>Buat jadwal tidur dan bangun yang konsisten.</li>
+                <li>Kurangi penggunaan gawai sebelum tidur.</li>
+                <li>Ciptakan kamar tidur yang sejuk, tenang, dan nyaman.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAIL 4 -->
+        <div class="detail-card">
+          <div class="number">4</div>
+
+          <div class="detail-content">
+            <h3>Kelola Stres</h3>
+
+            <p class="desc">
+              Stres yang tidak dikelola dapat memperburuk keluhan fisik dan
+              membuat tubuh lebih mudah lelah.
+            </p>
+
+            <div class="tips-box">
+              <ul>
+                <li>Lakukan relaksasi seperti meditasi, napas dalam, atau yoga.</li>
+                <li>Luangkan waktu untuk diri sendiri setiap hari.</li>
+                <li>Kurangi aktivitas yang membuat tubuh terlalu tegang.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAIL 5 -->
+        <div class="detail-card">
+          <div class="number">5</div>
+
+          <div class="detail-content">
+            <h3>Hidrasi yang Cukup</h3>
+
+            <p class="desc">
+              Air membantu menjaga fungsi tubuh dan mengurangi keluhan seperti
+              sakit kepala dan kelelahan.
+            </p>
+
+            <div class="tips-box">
+              <ul>
+                <li>Minum 6–8 gelas air putih setiap hari.</li>
+                <li>Kurangi minuman manis dan beralkohol.</li>
+                <li>Bawa botol minum agar kebutuhan cairan lebih mudah terpenuhi.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAIL 6 -->
+        <div class="detail-card">
+          <div class="number">6</div>
+
+          <div class="detail-content">
+            <h3>Periksa Kesehatan Secara Berkala</h3>
+
+            <p class="desc">
+              Pemeriksaan rutin membantu mendeteksi risiko penyakit sejak dini.
+            </p>
+
+            <div class="tips-box">
+              <ul>
+                <li>Cek tekanan darah, gula darah, kolesterol, dan kesehatan tulang.</li>
+                <li>Konsultasikan keluhan dengan tenaga kesehatan.</li>
+                <li>Catat gejala yang sering muncul untuk bahan konsultasi.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>
