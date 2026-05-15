@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FEMOS - Penilaian Kondisi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    :root {
+      --pink-main: #dc5d91;
+      --pink-soft: #ffe6ee;
+      --pink-light: #fff2f6;
+      --pink-dark: #8a0d45;
+      --purple: #7b4db3;
+      --orange: #f47f68;
+      --text: #171c34;
+      --muted: #555b70;
+      --white: #ffffff;
+      --shadow: 0 14px 28px rgba(125, 35, 75, 0.18);
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffe7ef 0%, #fff7fa 52%, #ffd1df 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 34px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: rgba(220, 93, 145, 0.16);
+      top: -160px;
+      right: -150px;
+      z-index: 0;
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: rgba(255, 139, 177, 0.2);
+      bottom: -190px;
+      left: -130px;
+      z-index: 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1320px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-btn {
+      position: sticky;
+      top: 18px;
+      z-index: 30;
+      backdrop-filter: blur(10px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 178px;
+      height: 58px;
+      border: 2px solid #171c34;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.18);
+      color: #171c34;
+      font-size: 20px;
+      font-weight: 800;
+      transition: 0.25s ease;
+      margin-bottom: 38px;
+    }
+
+    .back-btn:hover {
+      background: #171c34;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      color: var(--pink-dark);
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(220, 93, 145, 0.28);
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      color: var(--pink-dark);
+      font-size: 54px;
+      line-height: 1.12;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      max-width: 920px;
+      margin: 0 auto;
+      color: #33384c;
+      font-size: 20px;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .app-card {
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow);
+      border-radius: 36px;
+      padding: 34px;
+      backdrop-filter: blur(16px);
+    }
+
+    .menu-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .menu-tab {
+      min-height: 126px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 8px 17px rgba(105, 35, 67, 0.13);
+      border: 2px solid transparent;
+      padding: 22px;
+      text-align: left;
+      transition: 0.25s ease;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .menu-tab:hover,
+    .menu-tab.active {
+      transform: translateY(-4px);
+      background: #fff;
+      border-color: rgba(220, 93, 145, 0.38);
+    }
+
+    .menu-tab.active.fisik {
+      border-color: #ef5aa1;
+    }
+
+    .menu-tab.active.emosi {
+      border-color: #9559bf;
+    }
+
+    .menu-tab.active.sosial {
+      border-color: #ff8068;
+    }
+
+    .tab-text small {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .tab-text strong {
+      display: block;
+      color: var(--text);
+      font-size: 22px;
+      line-height: 1.15;
+      font-weight: 800;
+    }
+
+    .tab-icon {
+      flex: 0 0 70px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fff0f5;
+      font-size: 32px;
+      box-shadow: inset 0 0 0 2px rgba(220, 93, 145, 0.14);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(340px, 0.78fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .form-panel,
+    .result-panel,
+    .recommendation-panel {
+      background: rgba(255, 255, 255, 0.84);
+      border-radius: 32px;
+      box-shadow: 0 10px 24px rgba(105, 35, 67, 0.13);
+      border: 1px solid rgba(220, 93, 145, 0.15);
+    }
+
+    .form-panel {
+      padding: 30px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      color: var(--pink-dark);
+      font-size: 30px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .score-guide {
+      min-width: 190px;
+      background: #fff4f8;
+      border-radius: 20px;
+      padding: 16px;
+      font-size: 13px;
+      color: #5c263d;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+
+    .question-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .question-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 22px;
+      border: 1px solid rgba(220, 93, 145, 0.14);
+      transition: 0.2s ease;
+    }
+
+    .question-card:hover {
+      box-shadow: 0 8px 18px rgba(105, 35, 67, 0.1);
+    }
+
+    .question-card h3 {
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 800;
+      color: #20243a;
+      margin-bottom: 16px;
+    }
+
+    .answer-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .answer-option input {
+      display: none;
+    }
+
+    .answer-option span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #fff2f7;
+      border: 2px solid transparent;
+      color: #60233e;
+      font-size: 15px;
+      font-weight: 800;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .answer-option input:checked + span {
+      background: var(--pink-main);
+      color: white;
+      border-color: #c64b80;
+      box-shadow: 0 7px 14px rgba(220, 93, 145, 0.25);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      min-height: 54px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 800;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--pink-main);
+      color: #fff;
+      box-shadow: 0 10px 16px rgba(220, 93, 145, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #c84d80;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: #171c34;
+      border: 2px solid #171c34;
+    }
+
+    .btn-secondary:hover {
+      background: #171c34;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 24px;
+      position: sticky;
+      top: 96px;
+    }
+
+    .result-panel {
+      padding: 28px;
+    }
+
+    .empty-state {
+      padding: 30px 8px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .empty-state .emoji {
+      font-size: 54px;
+      margin-bottom: 12px;
+    }
+
+    .empty-state h3 {
+      color: var(--pink-dark);
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .result-content {
+      display: none;
+    }
+
+    .result-content.show {
+      display: block;
+    }
+
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff0f5;
+      color: var(--pink-dark);
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .score-box {
+      background: linear-gradient(135deg, #dc5d91, #f48caf);
+      border-radius: 26px;
+      color: #fff;
+      padding: 22px;
+      margin-bottom: 22px;
+    }
+
+    .score-box small {
+      display: block;
+      font-size: 14px;
+      opacity: 0.9;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .score-box strong {
+      display: block;
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .result-item {
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(220, 93, 145, 0.18);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .result-item h4 {
+      color: var(--pink-dark);
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .result-item p {
+      color: #30364a;
+      font-size: 15px;
+      line-height: 1.48;
+      font-weight: 500;
+    }
+
+    .result-actions {
+      display: none;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .result-actions.show {
+      display: flex;
+    }
+
+    .result-actions .btn {
+      flex: 1;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+
+    .recommendation-panel {
+      display: none;
+      padding: 28px;
+    }
+
+    .recommendation-panel.show {
+      display: block;
+    }
+
+    .recommendation-panel h3 {
+      color: var(--pink-dark);
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .recommendation-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .recommendation-list li {
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px 18px;
+      border-left: 6px solid var(--pink-main);
+      box-shadow: 0 5px 12px rgba(105, 35, 67, 0.08);
+    }
+
+    .recommendation-list strong {
+      display: block;
+      font-size: 16px;
+      color: #171c34;
+      margin-bottom: 5px;
+    }
+
+    .recommendation-list p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .print-only {
+      display: none;
+    }
+
+    @media (max-width: 1080px) {
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .menu-tabs,
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-tab {
+        min-height: 110px;
+      }
+
+      .side-stack {
+        position: static;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .page {
+        padding-top: 24px;
+      }
+
+      .container {
+        width: 92%;
+      }
+
+      .back-btn {
+        width: 145px;
+        height: 50px;
+        font-size: 17px;
+        margin-bottom: 28px;
+      }
+
+      .hero-label {
+        font-size: 12px;
+        letter-spacing: 3px;
+      }
+
+      .hero h1 {
+        font-size: 33px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .app-card {
+        padding: 18px;
+        border-radius: 26px;
+      }
+
+      .menu-tab {
+        padding: 18px;
+      }
+
+      .tab-text strong {
+        font-size: 19px;
+      }
+
+      .tab-icon {
+        width: 58px;
+        height: 58px;
+        flex-basis: 58px;
+        font-size: 26px;
+      }
+
+      .form-panel,
+      .result-panel,
+      .recommendation-panel {
+        border-radius: 24px;
+        padding: 20px;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading h2 {
+        font-size: 25px;
+      }
+
+      .score-guide {
+        margin-top: 16px;
+      }
+
+      .answer-group {
+        grid-template-columns: 1fr;
+      }
+
+      .btn,
+      .form-actions .btn,
+      .result-actions .btn {
+        width: 100%;
+        flex: auto;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .page {
+        padding: 0;
+        background: #fff;
+      }
+
+      .page::before,
+      .page::after,
+      .back-btn,
+      .hero,
+      .menu-tabs,
+      .form-panel,
+      .recommendation-panel,
+      .result-actions {
+        display: none !important;
+      }
+
+      .container {
+        width: 100%;
+        max-width: none;
+      }
+
+      .app-card,
+      .result-panel {
+        box-shadow: none;
+        border: none;
+        background: #fff;
+        padding: 0;
+        border-radius: 0;
+      }
+
+      .content-grid {
+        display: block;
+      }
+
+      .side-stack {
+        position: static;
+      }
+
+      .empty-state {
+        display: none !important;
+      }
+
+      .result-content.show {
+        display: block !important;
+      }
+
+      .print-only {
+        display: block;
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .print-only h1 {
+        color: #8a0d45;
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+
+      .print-only p {
+        font-size: 13px;
+        color: #444;
+      }
+
+      .score-box {
+        color: #111;
+        background: #f8d9e4;
+        border: 1px solid #e6a2bc;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="container">
+      <a href="index.html" class="back-btn">Back</a>
+
+      <section class="hero">
+        <span class="hero-label">Penilaian Kondisi</span>
+        <h1>Kenali Kondisi Anda<br />Selama Masa Menopause</h1>
+        <p>
+          Pilih salah satu menu penilaian, jawab 15 pertanyaan berdasarkan kondisi 1 bulan terakhir, lalu sistem akan menghitung skor dan menampilkan hasil, ringkasan, fokus perawatan, serta rekomendasi yang sesuai. Pertanyaan diadaptasi dari area gejala pada MRS, MENQOL, dan Greene Climacteric Scale.
+        </p>
+      </section>
+
+      <section class="app-card">
+        <div class="menu-tabs">
+          <button class="menu-tab fisik active" data-type="fisik">
+            <span class="tab-text">
+              <small>Menu 01</small>
+              <strong>Penilaian Kondisi Fisik</strong>
+            </span>
+            <span class="tab-icon">🌿</span>
+          </button>
+
+          <button class="menu-tab emosi" data-type="emosi">
+            <span class="tab-text">
+              <small>Menu 02</small>
+              <strong>Penilaian Kondisi Emosi</strong>
+            </span>
+            <span class="tab-icon">💗</span>
+          </button>
+
+          <button class="menu-tab sosial" data-type="sosial">
+            <span class="tab-text">
+              <small>Menu 03</small>
+              <strong>Penilaian Kondisi Sosial</strong>
+            </span>
+            <span class="tab-icon">🤝</span>
+          </button>
+        </div>
+
+        <div class="content-grid">
+          <section class="form-panel">
+            <div class="section-heading">
+              <div>
+                <h2 id="formTitle">Form Penilaian Kondisi Fisik</h2>
+                <p id="formDescription">Jawab setiap pertanyaan sesuai kondisi yang paling sering Anda rasakan.</p>
+              </div>
+              <div class="score-guide">
+                Skor jawaban:<br />Tidak pernah = 0<br />Pernah = 1<br />Sering = 2
+              </div>
+            </div>
+
+            <form id="assessmentForm">
+              <div class="question-list" id="questionList"></div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Lihat Hasil Penilaian</button>
+                <button type="button" class="btn btn-secondary" id="resetBtn">Reset Jawaban</button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="side-stack">
+            <section class="result-panel" id="printArea">
+              <div class="print-only">
+                <h1>Hasil Penilaian Kondisi FEMOS</h1>
+                <p>Dokumen ini dibuat otomatis berdasarkan jawaban pada halaman penilaian kondisi.</p>
+              </div>
+
+              <div class="empty-state" id="emptyState">
+                <div class="emoji">📝</div>
+                <h3>Hasil belum tersedia</h3>
+                <p>Silakan isi semua pertanyaan, lalu klik tombol lihat hasil penilaian.</p>
+              </div>
+
+              <div class="result-content" id="resultContent">
+                <span class="result-badge" id="resultCategory">Hasil Penilaian Kondisi Fisik</span>
+
+                <div class="score-box">
+                  <small>Total Skor</small>
+                  <strong id="scoreText">0/0</strong>
+                </div>
+
+                <div class="result-item">
+                  <h4 id="conditionTitle">Hasil Penilaian Kondisi</h4>
+                  <p id="conditionText"></p>
+                </div>
+
+                <div class="result-item">
+                  <h4>Ringkasan Hasil</h4>
+                  <p id="summaryText"></p>
+                </div>
+
+                <div class="result-item">
+                  <h4>Fokus Utama Perawatan</h4>
+                  <p id="focusText"></p>
+                </div>
+              </div>
+
+              <div class="result-actions" id="resultActions">
+                <button type="button" class="btn btn-primary" id="recommendationBtn">Lihat Rekomendasi Perawatan</button>
+                <button type="button" class="btn btn-secondary" id="printBtn">Cetak Hasil</button>
+              </div>
+            </section>
+
+            <section class="recommendation-panel" id="recommendationPanel">
+              <h3 id="recommendationTitle">Rekomendasi Perawatan</h3>
+              <ul class="recommendation-list" id="recommendationList"></ul>
+            </section>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const assessments = {
+      fisik: {
+        title: "Form Penilaian Kondisi Fisik",
+        description: "15 pertanyaan berikut diadaptasi dari area gejala fisik, vasomotor, somatik, dan urogenital pada instrumen MRS, MENQOL, dan Greene Climacteric Scale.",
+        label: "Hasil Penilaian Kondisi Fisik",
+        conditionTitle: "Hasil Penilaian Kondisi Fisik",
+        questions: [
+          "Dalam 1 bulan terakhir, apakah Anda merasakan sensasi panas tiba-tiba pada wajah, leher, dada, atau seluruh tubuh?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami keringat malam yang membuat tidur terganggu?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami sulit tidur, sering terbangun, atau tidur terasa tidak nyenyak?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa jantung berdebar atau detak jantung terasa tidak nyaman tanpa sebab yang jelas?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami nyeri sendi, pegal, atau kaku pada otot dan tubuh?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa tubuh lebih mudah lelah atau energi menurun dibanding biasanya?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami sakit kepala atau rasa tidak nyaman pada kepala yang mengganggu aktivitas?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami pusing atau rasa tidak seimbang saat beraktivitas?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami perubahan berat badan atau merasa berat badan lebih sulit dikontrol?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami kulit lebih kering, rambut rontok, atau perubahan fisik yang terasa mengganggu?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami area kewanitaan terasa kering atau tidak nyaman?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami nyeri atau rasa tidak nyaman saat berhubungan intim?",
+          "Dalam 1 bulan terakhir, apakah Anda lebih sering buang air kecil atau sulit menahan buang air kecil?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami penurunan gairah seksual yang terasa mengganggu?",
+          "Dalam 1 bulan terakhir, apakah keluhan fisik tersebut membuat aktivitas harian Anda menjadi lebih terbatas?"
+        ],
+        focus: {
+          low: "Pertahankan pola hidup sehat dengan hidrasi cukup, aktivitas fisik ringan, pola tidur teratur, serta catat perubahan fisik yang mulai muncul.",
+          medium: "Fokus pada pengaturan tidur, manajemen hot flashes, olahraga ringan, nutrisi seimbang, dan pemantauan keluhan fisik yang mulai mengganggu.",
+          high: "Prioritaskan keluhan utama seperti hot flashes, gangguan tidur, nyeri tubuh, gangguan urogenital, serta konsultasi dengan tenaga kesehatan bila gejala sering mengganggu aktivitas."
+        },
+        recommendations: {
+          low: [
+            ["Jaga rutinitas sehat", "Minum air cukup, konsumsi makanan bergizi, dan tetap aktif bergerak setiap hari."],
+            ["Olahraga ringan", "Lakukan jalan kaki, peregangan, atau senam ringan 15-30 menit secara rutin."],
+            ["Catat gejala", "Pantau hot flashes, kualitas tidur, nyeri tubuh, dan keluhan urogenital agar perubahan mudah dikenali."]
+          ],
+          medium: [
+            ["Manajemen hot flashes", "Gunakan pakaian nyaman, pilih bahan yang menyerap keringat, dan kenali pemicu seperti suhu panas, stres, kafein, atau makanan pedas."],
+            ["Rutinitas tidur", "Tidur dan bangun di jam yang sama, kurangi layar sebelum tidur, serta buat kamar lebih sejuk dan nyaman."],
+            ["Nutrisi dan tulang", "Perbanyak sayur, buah, protein, serta makanan tinggi kalsium dan vitamin D sesuai kebutuhan."],
+            ["Aktivitas fisik teratur", "Pilih olahraga ringan yang konsisten, seperti jalan kaki, yoga ringan, atau peregangan."]
+          ],
+          high: [
+            ["Konsultasi kesehatan", "Bicarakan keluhan fisik dengan tenaga kesehatan, terutama bila hot flashes, nyeri, gangguan tidur, atau keluhan urogenital sering terjadi."],
+            ["Rencana tidur intensif", "Buat jadwal tidur konsisten, kurangi kafein sore/malam, dan lakukan relaksasi sebelum tidur."],
+            ["Perawatan area kewanitaan", "Diskusikan keluhan kering, nyeri, atau gangguan berkemih dengan tenaga kesehatan agar mendapat saran aman."],
+            ["Dukungan gaya hidup", "Kombinasikan makan bergizi, hidrasi, aktivitas fisik, dan pengelolaan stres sesuai kemampuan tubuh."]
+          ]
+        }
+      },
+      emosi: {
+        title: "Form Penilaian Kondisi Emosi",
+        description: "15 pertanyaan berikut diadaptasi dari domain psikologis, kecemasan, suasana hati, konsentrasi, dan kualitas hidup pada MRS, MENQOL, dan Greene Climacteric Scale.",
+        label: "Hasil Penilaian Kondisi Emosi",
+        conditionTitle: "Hasil Penilaian Kondisi Emosi",
+        questions: [
+          "Dalam 1 bulan terakhir, apakah Anda merasa lebih mudah cemas atau khawatir dibanding biasanya?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa tegang, gelisah, atau sulit merasa rileks?",
+          "Dalam 1 bulan terakhir, apakah suasana hati Anda mudah berubah secara tiba-tiba?",
+          "Dalam 1 bulan terakhir, apakah Anda menjadi lebih mudah marah atau tersinggung?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa sedih, murung, atau kehilangan semangat?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa tidak puas terhadap diri sendiri atau kehidupan sehari-hari?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa kurang percaya diri karena perubahan tubuh atau kondisi menopause?",
+          "Dalam 1 bulan terakhir, apakah Anda mengalami sulit berkonsentrasi saat bekerja, belajar, atau mengurus aktivitas harian?",
+          "Dalam 1 bulan terakhir, apakah Anda menjadi lebih mudah lupa atau merasa daya ingat menurun?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa stres karena keluhan fisik atau perubahan yang sedang dialami?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa cepat lelah secara mental meskipun aktivitas tidak terlalu berat?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa kehilangan minat terhadap aktivitas yang biasanya disukai?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa sulit mengendalikan emosi saat menghadapi masalah kecil?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa membutuhkan dukungan emosional tetapi sulit mengungkapkannya?",
+          "Dalam 1 bulan terakhir, apakah perubahan emosi membuat hubungan atau aktivitas harian Anda terganggu?"
+        ],
+        focus: {
+          low: "Pertahankan keseimbangan emosi dengan istirahat cukup, aktivitas menyenangkan, komunikasi terbuka, dan kebiasaan relaksasi ringan.",
+          medium: "Fokus pada relaksasi, jurnal emosi, pengelolaan stres, dukungan orang terdekat, serta mengenali pemicu perubahan suasana hati.",
+          high: "Prioritaskan dukungan emosional yang lebih kuat, teknik menenangkan diri, komunikasi dengan orang terdekat, serta konsultasi profesional bila emosi terasa berat atau mengganggu aktivitas."
+        },
+        recommendations: {
+          low: [
+            ["Me time terjadwal", "Luangkan waktu untuk kegiatan yang membuat Anda tenang dan nyaman."],
+            ["Komunikasi ringan", "Ceritakan perasaan kepada orang yang dipercaya agar emosi tidak dipendam."],
+            ["Aktivitas positif", "Lakukan hobi, berjalan santai, ibadah, atau kegiatan lain yang membantu suasana hati."]
+          ],
+          medium: [
+            ["Latihan napas", "Gunakan napas perlahan 4-4-6 saat mulai merasa cemas, tegang, atau emosi meningkat."],
+            ["Jurnal emosi", "Tulis perasaan, pemicu, dan hal yang membantu agar pola emosi lebih mudah dipahami."],
+            ["Batasi pemicu stres", "Kurangi aktivitas yang terlalu melelahkan dan buat prioritas harian yang realistis."],
+            ["Dukungan keluarga", "Sampaikan kebutuhan emosional Anda dengan kalimat sederhana dan jelas."]
+          ],
+          high: [
+            ["Konsultasi profesional", "Pertimbangkan berbicara dengan psikolog, konselor, atau tenaga kesehatan bila emosi terasa sulit dikendalikan."],
+            ["Rencana tenang harian", "Buat rutinitas relaksasi pagi atau malam untuk membantu menurunkan ketegangan."],
+            ["Dukungan orang terdekat", "Mintalah pendampingan dari keluarga atau sahabat saat merasa sangat cemas, sedih, atau kewalahan."],
+            ["Kurangi beban mental", "Pecah tugas besar menjadi langkah kecil dan beri jeda istirahat yang cukup."]
+          ]
+        }
+      },
+      sosial: {
+        title: "Form Penilaian Kondisi Sosial",
+        description: "15 pertanyaan berikut diadaptasi dari domain psikososial dan kualitas hidup menopause pada MENQOL, serta aspek psikologis yang memengaruhi relasi sosial pada MRS dan Greene Climacteric Scale.",
+        label: "Hasil Penilaian Kondisi Sosial",
+        conditionTitle: "Hasil Penilaian Kondisi Sosial",
+        questions: [
+          "Dalam 1 bulan terakhir, apakah Anda menjadi lebih sering menarik diri dari keluarga, teman, atau lingkungan?",
+          "Dalam 1 bulan terakhir, apakah Anda mengurangi kegiatan sosial karena keluhan fisik seperti lelah, panas, nyeri, atau gangguan tidur?",
+          "Dalam 1 bulan terakhir, apakah Anda menghindari kegiatan sosial karena suasana hati kurang stabil?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa kurang nyaman membicarakan perubahan menopause yang Anda alami?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa orang sekitar kurang memahami kondisi Anda?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa kurang mendapatkan dukungan dari pasangan, keluarga, atau teman?",
+          "Dalam 1 bulan terakhir, apakah hubungan Anda dengan pasangan atau keluarga terasa kurang dekat?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa mudah tersinggung saat berinteraksi dengan orang lain?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa kurang percaya diri saat bertemu orang lain karena perubahan tubuh atau emosi?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa kesulitan menjalankan peran di rumah, pekerjaan, atau komunitas?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa aktivitas harian bersama keluarga menjadi berkurang?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa hubungan intim atau kedekatan dengan pasangan ikut terganggu?",
+          "Dalam 1 bulan terakhir, apakah Anda merasa lebih nyaman menyimpan masalah sendiri daripada meminta bantuan?",
+          "Dalam 1 bulan terakhir, apakah Anda membutuhkan ruang berbagi dengan orang yang mengalami hal serupa?",
+          "Dalam 1 bulan terakhir, apakah perubahan yang Anda alami membuat kualitas hubungan sosial Anda menurun?"
+        ],
+        focus: {
+          low: "Pertahankan hubungan sosial yang sehat melalui komunikasi terbuka, kegiatan bersama orang terdekat, dan keberanian menyampaikan kebutuhan.",
+          medium: "Fokus pada membangun komunikasi, meminta dukungan, mengurangi kebiasaan menarik diri, dan memilih lingkungan yang aman untuk berbagi.",
+          high: "Prioritaskan dukungan sosial aktif, ruang berbagi, komunikasi keluarga/pasangan, serta bantuan profesional bila perubahan sosial mulai mengganggu hubungan penting."
+        },
+        recommendations: {
+          low: [
+            ["Jaga komunikasi", "Tetap terhubung dengan keluarga, teman, atau pasangan melalui percakapan ringan."],
+            ["Quality time", "Luangkan waktu bersama orang terdekat untuk menjaga kedekatan emosional."],
+            ["Tetap aktif sosial", "Ikuti kegiatan yang terasa nyaman tanpa memaksakan diri."]
+          ],
+          medium: [
+            ["Komunikasi terbuka", "Sampaikan kondisi dan kebutuhan Anda kepada orang terdekat secara perlahan."],
+            ["Cari teman berbagi", "Temukan sahabat, keluarga, atau kelompok yang dapat menjadi tempat bercerita."],
+            ["Atur batas sehat", "Tetap bersosialisasi, tetapi beri diri sendiri waktu istirahat saat tubuh atau emosi lelah."],
+            ["Libatkan pasangan/keluarga", "Ajak mereka memahami perubahan menopause agar dukungan menjadi lebih tepat."]
+          ],
+          high: [
+            ["Bergabung komunitas", "Cari komunitas perempuan atau menopause untuk mendapatkan ruang berbagi yang aman."],
+            ["Dukungan keluarga intensif", "Minta keluarga atau pasangan terlibat dalam proses adaptasi dan perawatan."],
+            ["Konseling keluarga", "Bila hubungan terasa terganggu, pertimbangkan bantuan konselor atau tenaga profesional."],
+            ["Rencana dukungan sosial", "Tentukan siapa yang dapat dihubungi saat Anda membutuhkan bantuan atau teman bicara."]
+          ]
+        }
+      }
+    };
+
+    const scores = [
+      { label: "Tidak pernah", value: 0 },
+      { label: "Pernah", value: 1 },
+      { label: "Sering", value: 2 }
+    ];
+
+    const tabs = document.querySelectorAll(".menu-tab");
+    const formTitle = document.getElementById("formTitle");
+    const formDescription = document.getElementById("formDescription");
+    const questionList = document.getElementById("questionList");
+    const assessmentForm = document.getElementById("assessmentForm");
+    const resetBtn = document.getElementById("resetBtn");
+    const emptyState = document.getElementById("emptyState");
+    const resultContent = document.getElementById("resultContent");
+    const resultActions = document.getElementById("resultActions");
+    const resultCategory = document.getElementById("resultCategory");
+    const scoreText = document.getElementById("scoreText");
+    const conditionTitle = document.getElementById("conditionTitle");
+    const conditionText = document.getElementById("conditionText");
+    const summaryText = document.getElementById("summaryText");
+    const focusText = document.getElementById("focusText");
+    const recommendationBtn = document.getElementById("recommendationBtn");
+    const printBtn = document.getElementById("printBtn");
+    const recommendationPanel = document.getElementById("recommendationPanel");
+    const recommendationTitle = document.getElementById("recommendationTitle");
+    const recommendationList = document.getElementById("recommendationList");
+
+    let activeType = "fisik";
+    let lastLevel = null;
+
+    function getLevel(total, maxScore) {
+      const percent = total / maxScore;
+
+      if (percent <= 0.33) {
+        return "low";
+      }
+
+      if (percent <= 0.66) {
+        return "medium";
+      }
+
+      return "high";
+    }
+
+    function getLevelText(level) {
+      if (level === "low") {
+        return "Ringan";
+      }
+
+      if (level === "medium") {
+        return "Sedang";
+      }
+
+      return "Tinggi";
+    }
+
+    function getSummary(type, level, total, maxScore) {
+      const area = type === "fisik" ? "fisik" : type === "emosi" ? "emosi" : "sosial";
+      const levelText = getLevelText(level).toLowerCase();
+
+      if (level === "low") {
+        return `Skor Anda berada pada kategori ${levelText}. Keluhan ${area} yang muncul belum dominan, tetapi tetap penting untuk menjaga kebiasaan sehat dan memantau perubahan yang dirasakan. Total skor Anda adalah ${total} dari ${maxScore}.`;
+      }
+
+      if (level === "medium") {
+        return `Skor Anda berada pada kategori ${levelText}. Beberapa tanda pada aspek ${area} mulai terlihat dan sebaiknya diperhatikan agar tidak semakin mengganggu aktivitas harian. Total skor Anda adalah ${total} dari ${maxScore}.`;
+      }
+
+      return `Skor Anda berada pada kategori ${levelText}. Keluhan pada aspek ${area} cukup sering dirasakan dan perlu mendapatkan perhatian lebih melalui perawatan yang terarah serta dukungan dari orang terdekat atau tenaga profesional. Total skor Anda adalah ${total} dari ${maxScore}.`;
+    }
+
+    function renderQuestions(type) {
+      const data = assessments[type];
+      formTitle.textContent = data.title;
+      formDescription.textContent = data.description;
+
+      questionList.innerHTML = data.questions.map((question, index) => {
+        const answerOptions = scores.map(score => `
+          <label class="answer-option">
+            <input type="radio" name="question_${index}" value="${score.value}" required />
+            <span>${score.label}</span>
+          </label>
+        `).join("");
+
+        return `
+          <div class="question-card">
+            <h3>${index + 1}. ${question}</h3>
+            <div class="answer-group">${answerOptions}</div>
+          </div>
+        `;
+      }).join("");
+
+      hideResult();
+    }
+
+    function hideResult() {
+      emptyState.style.display = "block";
+      resultContent.classList.remove("show");
+      resultActions.classList.remove("show");
+      recommendationPanel.classList.remove("show");
+      lastLevel = null;
+    }
+
+    function showResult(type, total) {
+      const data = assessments[type];
+      const maxScore = data.questions.length * 2;
+      const level = getLevel(total, maxScore);
+      const levelText = getLevelText(level);
+
+      lastLevel = level;
+
+      emptyState.style.display = "none";
+      resultContent.classList.add("show");
+      resultActions.classList.add("show");
+      recommendationPanel.classList.remove("show");
+
+      resultCategory.textContent = data.label;
+      scoreText.textContent = `${total}/${maxScore}`;
+      conditionTitle.textContent = data.conditionTitle;
+      conditionText.textContent = `Kategori hasil: ${levelText}.`;
+      summaryText.textContent = getSummary(type, level, total, maxScore);
+      focusText.textContent = data.focus[level];
+    }
+
+    function showRecommendations() {
+      if (!lastLevel) {
+        alert("Silakan isi form dan lihat hasil penilaian terlebih dahulu.");
+        return;
+      }
+
+      const data = assessments[activeType];
+      const recommendations = data.recommendations[lastLevel];
+
+      recommendationTitle.textContent = `Rekomendasi Perawatan - ${getLevelText(lastLevel)}`;
+      recommendationList.innerHTML = recommendations.map(item => `
+        <li>
+          <strong>${item[0]}</strong>
+          <p>${item[1]}</p>
+        </li>
+      `).join("");
+
+      recommendationPanel.classList.add("show");
+      scrollToElementWithOffset(recommendationPanel, 92);
+    }
+
+    function scrollToElementWithOffset(element, offset = 92) {
+      const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: Math.max(y, 0), behavior: "smooth" });
+    }
+
+    function scrollResultOnlyOnSmallScreen() {
+      const isSmallScreen = window.matchMedia("(max-width: 1080px)").matches;
+      if (isSmallScreen) {
+        scrollToElementWithOffset(document.getElementById("printArea"), 92);
+      }
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(item => item.classList.remove("active"));
+        tab.classList.add("active");
+        activeType = tab.getAttribute("data-type");
+        assessmentForm.reset();
+        renderQuestions(activeType);
+      });
+    });
+
+    assessmentForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const data = assessments[activeType];
+      let total = 0;
+
+      for (let index = 0; index < data.questions.length; index++) {
+        const selected = assessmentForm.querySelector(`input[name="question_${index}"]:checked`);
+
+        if (!selected) {
+          alert("Silakan jawab semua pertanyaan terlebih dahulu.");
+          return;
+        }
+
+        total += Number(selected.value);
+      }
+
+      showResult(activeType, total);
+      scrollResultOnlyOnSmallScreen();
+    });
+
+    resetBtn.addEventListener("click", () => {
+      assessmentForm.reset();
+      hideResult();
+    });
+
+    recommendationBtn.addEventListener("click", showRecommendations);
+
+    printBtn.addEventListener("click", () => {
+      if (!lastLevel) {
+        alert("Silakan isi form dan lihat hasil penilaian terlebih dahulu.");
+        return;
+      }
+
+      window.print();
+    });
+
+    renderQuestions(activeType);
+  </script>
+</body>
+</html>

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Gejala & Perawatan Menopause - FEMOS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    :root {
+      --pink: #e85e9e;
+      --pink-dark: #8a174f;
+      --purple: #9562c9;
+      --orange: #ff8d74;
+      --text: #48485f;
+      --blue: #006eaf;
+      --card: rgba(255, 255, 255, 0.78);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 10% 7%, rgba(255,255,255,.9), transparent 30%),
+        radial-gradient(circle at 92% 12%, rgba(255,184,210,.55), transparent 32%),
+        linear-gradient(135deg, #fff8fa 0%, #ffe6ee 52%, #ffd2e3 100%);
+      color: var(--text);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 34px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      right: -165px;
+      top: -170px;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.6) 0 28%, transparent 29%),
+        conic-gradient(from 40deg, rgba(255,255,255,.65), rgba(232,94,158,.28), rgba(255,221,232,.72), rgba(255,141,116,.24));
+      opacity: .7;
+      pointer-events: none;
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 250px;
+      right: -80px;
+      top: 165px;
+      background:
+        radial-gradient(100% 120% at 70% 0%, rgba(232,94,158,.18) 0 48%, transparent 49%);
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1520px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 48px;
+    }
+
+    .back-btn {
+      width: 174px;
+      height: 58px;
+      border: 2px solid #2d1520;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      color: #2d1520;
+      background: rgba(255,255,255,.58);
+      box-shadow: 0 10px 24px rgba(139,29,76,.08);
+      transition: .3s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--pink-dark);
+      color: white;
+      border-color: var(--pink-dark);
+      transform: translateY(-2px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.68);
+      box-shadow: 0 10px 24px rgba(139,29,76,.08);
+      color: var(--pink-dark);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .brand-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    .hero {
+      max-width: 1020px;
+      margin: 0 auto 58px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 11px 24px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.64);
+      color: var(--pink-dark);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 24px rgba(139,29,76,.08);
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      line-height: 1.08;
+      font-weight: 800;
+      color: #46465b;
+      letter-spacing: -1.3px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      color: var(--pink);
+    }
+
+    .description-card {
+      width: 100%;
+      border-radius: 34px;
+      background: rgba(255,255,255,.76);
+      border: 1.5px solid rgba(255,255,255,.9);
+      padding: 34px 40px;
+      box-shadow: 0 18px 42px rgba(139,29,76,.1);
+    }
+
+    .description-card h2 {
+      color: var(--blue);
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .description-card p {
+      font-size: 22px;
+      line-height: 1.34;
+      font-weight: 700;
+      color: #4c4b61;
+      text-align: justify;
+    }
+
+    .solution-title {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .solution-title h2 {
+      font-size: 42px;
+      line-height: 1.16;
+      font-weight: 800;
+      color: #46465b;
+      margin-bottom: 8px;
+    }
+
+    .solution-title p {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+
+    .solution-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .solution-card {
+      min-height: 790px;
+      border-radius: 34px;
+      background: var(--card);
+      border: 1.5px solid rgba(255,255,255,.92);
+      box-shadow: 0 18px 38px rgba(139,29,76,.12);
+      padding: 40px 28px 34px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      transition: .3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .solution-card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      right: -70px;
+      top: -70px;
+      background: rgba(232, 94, 158, 0.08);
+    }
+
+    .solution-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 26px 48px rgba(139,29,76,.17);
+    }
+
+    .solution-card h3 {
+      font-size: 36px;
+      line-height: 1.14;
+      font-weight: 800;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .solution-card.fisik h3,
+    .solution-card.fisik .card-desc {
+      color: var(--pink);
+    }
+
+    .solution-card.emosi h3,
+    .solution-card.emosi .card-desc {
+      color: var(--purple);
+    }
+
+    .solution-card.sosial h3,
+    .solution-card.sosial .card-desc {
+      color: #ff6b45;
+    }
+
+    .main-icon {
+      width: 176px;
+      height: 176px;
+      object-fit: contain;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      filter: drop-shadow(0 10px 16px rgba(139,29,76,.12));
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-desc {
+      font-size: 18px;
+      line-height: 1.4;
+      font-weight: 700;
+      margin-bottom: 32px;
+      min-height: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .symptom-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px 14px;
+      margin-bottom: 34px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .symptom-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .symptom-item img {
+      width: 78px;
+      height: 78px;
+      object-fit: contain;
+      border-radius: 50%;
+      filter: drop-shadow(0 6px 10px rgba(139,29,76,.1));
+    }
+
+    .symptom-item p {
+      font-size: 11px;
+      line-height: 1.25;
+      font-weight: 600;
+      color: #4c4b61;
+    }
+
+    .btn-pilih {
+      width: 150px;
+      height: 56px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto auto 0;
+      color: white;
+      font-size: 21px;
+      font-weight: 800;
+      transition: .3s ease;
+      box-shadow: 0 12px 22px rgba(139,29,76,.14);
+      position: relative;
+      z-index: 1;
+    }
+
+    .fisik .btn-pilih {
+      background: var(--pink);
+    }
+
+    .emosi .btn-pilih {
+      background: var(--purple);
+    }
+
+    .sosial .btn-pilih {
+      background: var(--orange);
+    }
+
+    .btn-pilih:hover {
+      transform: translateY(-3px);
+      filter: brightness(.96);
+    }
+
+    .note {
+      max-width: 1040px;
+      margin: 44px auto 0;
+      border-radius: 28px;
+      padding: 26px 30px;
+      background: rgba(138,23,79,.92);
+      color: white;
+      box-shadow: 0 18px 35px rgba(139,29,76,.16);
+      text-align: center;
+    }
+
+    .note h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .note p {
+      font-size: 16px;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    @media (max-width: 1200px) {
+      .hero h1 {
+        font-size: 54px;
+      }
+
+      .solution-cards {
+        grid-template-columns: 1fr;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .solution-card {
+        min-height: auto;
+      }
+
+      .symptom-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .page {
+        padding: 22px 0 54px;
+      }
+
+      .container {
+        width: 92%;
+      }
+
+      .topbar {
+        margin-bottom: 36px;
+      }
+
+      .back-btn {
+        width: 136px;
+        height: 50px;
+        font-size: 17px;
+      }
+
+      .brand {
+        padding: 10px 16px;
+        font-size: 15px;
+      }
+
+      .brand-dot {
+        width: 14px;
+        height: 14px;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 1.8px;
+        padding: 10px 17px;
+      }
+
+      .hero {
+        margin-bottom: 40px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .description-card {
+        padding: 24px 20px;
+        border-radius: 26px;
+      }
+
+      .description-card h2 {
+        font-size: 19px;
+        text-align: center;
+      }
+
+      .description-card p {
+        font-size: 16px;
+        line-height: 1.48;
+        text-align: left;
+      }
+
+      .solution-title h2 {
+        font-size: 30px;
+      }
+
+      .solution-title p {
+        font-size: 16px;
+      }
+
+      .solution-card {
+        border-radius: 28px;
+        padding: 30px 18px;
+      }
+
+      .solution-card h3 {
+        font-size: 30px;
+      }
+
+      .main-icon {
+        width: 136px;
+        height: 136px;
+      }
+
+      .card-desc {
+        font-size: 16px;
+        min-height: auto;
+      }
+
+      .symptom-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px 16px;
+      }
+
+      .symptom-item img {
+        width: 76px;
+        height: 76px;
+      }
+
+      .symptom-item p {
+        font-size: 12px;
+      }
+
+      .btn-pilih {
+        width: 138px;
+        height: 52px;
+        font-size: 18px;
+      }
+
+      .note {
+        padding: 24px 18px;
+      }
+
+      .note h3 {
+        font-size: 21px;
+      }
+
+      .note p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="container">
+      <div class="topbar">
+        <a href="../selayang-pandang.html" class="back-btn">Back</a>
+
+        <div class="brand">
+          <span class="brand-dot"></span>
+          FEMOS
+        </div>
+      </div>
+
+      <section class="hero">
+        <span class="eyebrow">Gejala & Perawatan</span>
+
+        <h1>Gejala & Perawatan <span>Menopause</span></h1>
+
+        <div class="description-card">
+
+          <p>
+            Setiap wanita dapat mengalami gejala yang berbeda. pilih gejala yang anda rasakan untuk mendapatkan rekomendasi tindakan pencegahan yang sesuai.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-panduan">
+        <div class="solution-title">
+          <h2>Gejala yang anda rasakan</h2>
+          <p>(Pilih salah satu)</p>
+        </div>
+
+        <div class="solution-cards">
+          <div class="solution-card fisik">
+            <h3>Gejala Fisik</h3>
+
+            <img
+              src="../img/solusi-fisik/icon-fisik.png"
+              alt="Gejala Fisik"
+              class="main-icon"
+            />
+
+            <p class="card-desc">
+              Perubahan yang dirasakan pada tubuh
+            </p>
+
+            <div class="symptom-grid">
+              <div class="symptom-item">
+                <img src="../img/solusi-fisik/hot-flashes.png" alt="Hot flashes" />
+                <p>Hot flashes<br />(berkeringat malam)</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-fisik/gangguan-tidur.png" alt="Gangguan tidur" />
+                <p>Gangguan tidur<br />(insomnia)</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-fisik/kelelahan.png" alt="Kelelahan" />
+                <p>Kelelahan</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-fisik/nyeri-sendi.png" alt="Nyeri sendi" />
+                <p>Nyeri sendi<br />dan otot</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-fisik/sakit-kepala.png" alt="Sakit kepala" />
+                <p>Sakit kepala</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-fisik/perubahan-berat-badan.png" alt="Perubahan berat badan" />
+                <p>Perubahan<br />berat badan</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-fisik/jantung-berdebar.png" alt="Jantung berdebar" />
+                <p>Jantung<br />berdebar</p>
+              </div>
+            </div>
+
+            <a href="../perawatan/fisik.html" class="btn-pilih">Pilih</a>
+          </div>
+
+          <div class="solution-card emosi">
+            <h3>Gejala Emosi</h3>
+
+            <img
+              src="../img/solusi-emosi/icon-emosi.png"
+              alt="Gejala Emosi"
+              class="main-icon"
+            />
+
+            <p class="card-desc">
+              Perubahan pada suasana hati dan emosi
+            </p>
+
+            <div class="symptom-grid">
+              <div class="symptom-item">
+                <img src="../img/solusi-emosi/mudah-marah.png" alt="Mudah marah" />
+                <p>Mudah marah</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-emosi/cemas.png" alt="Cemas atau khawatir" />
+                <p>Cemas atau<br />khawatir</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-emosi/sedih.png" alt="Sedih atau murung" />
+                <p>Sedih atau<br />murung</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-emosi/sulit-berkonsentrasi.png" alt="Sulit berkonsentrasi" />
+                <p>Sulit<br />berkonsentrasi</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-emosi/mood.png" alt="Perubahan mood" />
+                <p>Perubahan<br />mood</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-emosi/mudah-tersinggung.png" alt="Mudah tersinggung" />
+                <p>Mudah<br />tersinggung</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-emosi/kurang-motivasi.png" alt="Kurang motivasi" />
+                <p>Kurang motivasi<br />dan semangat</p>
+              </div>
+            </div>
+
+            <a href="../perawatan/emosi.html" class="btn-pilih">Pilih</a>
+          </div>
+
+          <div class="solution-card sosial">
+            <h3>Gejala sosial</h3>
+
+            <img
+              src="../img/solusi-sosial/icon-sosial.png"
+              alt="Gejala Sosial"
+              class="main-icon"
+            />
+
+            <p class="card-desc">
+              Dampak pada interaksi dan aktivitas sosial
+            </p>
+
+            <div class="symptom-grid">
+              <div class="symptom-item">
+                <img src="../img/solusi-sosial/menarik-diri.png" alt="Menarik diri" />
+                <p>Menarik diri dari<br />lingkungan sosial</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-sosial/kesepian.png" alt="Merasa kesepian" />
+                <p>Merasa<br />kesepian</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-sosial/sulit-berinteraksi.png" alt="Sulit berinteraksi" />
+                <p>Sulit berinteraksi<br />dengan orang lain</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-sosial/kehilangan-minat.png" alt="Kehilangan minat" />
+                <p>Kehilangan minat<br />pada aktivitas sosial</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-sosial/menyendiri.png" alt="Lebih memilih menyendiri" />
+                <p>Lebih memilih<br />menyendiri</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-sosial/kesulita-berkomunikasi.png" alt="Kesulitan berkomunikasi" />
+                <p>Kesulitan berkomunikasi<br />secara terbuka</p>
+              </div>
+
+              <div class="symptom-item">
+                <img src="../img/solusi-sosial/menghindari-acara.png" alt="Menghindari acara" />
+                <p>Menghindari acara<br />atau pertemuan</p>
+              </div>
+            </div>
+
+            <a href="../perawatan/sosial.html" class="btn-pilih">Pilih</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="note">
+        <h3>Catatan</h3>
+        <p>
+          Pilihan gejala ini membantu pengguna mengenali area keluhan yang paling dominan. Setelah memilih salah satu, pengguna akan diarahkan ke halaman perawatan sesuai kondisi.
+        </p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

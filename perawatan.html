@@ -22,6 +22,10 @@
       font-family: "Poppins", sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
       overflow-x: hidden;
@@ -41,29 +45,51 @@
       font-family: inherit;
     }
 
-    .page {
-      width: 100%;
-      min-height: 100vh;
-      background-image: url("img/perawatan-bg.png");
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-      padding: 38px 0 70px;
-    }
-
     .container {
       width: 92%;
       max-width: 1700px;
       margin: 0 auto;
     }
 
-    /* ================= HERO ================= */
+    /* ================= SECTION 1: HERO BACKGROUND ================= */
+
+    .hero-section {
+      width: 100%;
+      min-height: 100vh;
+      background-image: url("img/perawatan-menopause-bg.png");
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      padding: 38px 0 70px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .back-btn {
+      width: 210px;
+      height: 68px;
+      border: 2px solid #161b31;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: #161b31;
+      transition: 0.3s ease;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .back-btn:hover {
+      background: #161b31;
+      color: white;
+      transform: translateY(-2px);
+    }
 
     .hero {
-      min-height: 200px;
+      min-height: calc(100vh - 176px);
       display: flex;
       align-items: center;
-      margin-bottom: 100px;
     }
 
     .hero-text {
@@ -88,10 +114,38 @@
       color: #060606;
     }
 
-    /* ================= CONTENT AREA ================= */
+    /* ================= SECTION 2: PINK CONTENT ================= */
+
+    .care-section {
+      width: 100%;
+      min-height: 100vh;
+      background: #ffe5eb;
+      padding: 95px 0 110px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-heading span {
+      display: block;
+      font-size: 18px;
+      letter-spacing: 8px;
+      color: #8a0d45;
+      font-weight: 600;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-size: 46px;
+      line-height: 1.18;
+      font-weight: 800;
+      color: #8a0d45;
+    }
 
     .content-section {
-      margin-top: -15px;
       display: grid;
       grid-template-columns: 430px 1fr;
       gap: 70px;
@@ -111,7 +165,7 @@
     }
 
     .care-tab {
-      width: 500px;
+      width: 450px;
       min-height: 118px;
 
       display: grid;
@@ -273,13 +327,15 @@
     }
 
     @media (max-width: 1050px) {
-      .page {
-        padding-bottom: 60px;
+      .hero-section {
+        min-height: auto;
+        padding-bottom: 80px;
+        background-position: center top;
       }
 
       .hero {
         min-height: auto;
-        padding: 70px 0;
+        padding: 90px 0 70px;
       }
 
       .hero-text {
@@ -292,6 +348,14 @@
 
       .hero-text p {
         font-size: 22px;
+      }
+
+      .care-section {
+        padding: 75px 0 85px;
+      }
+
+      .section-heading h2 {
+        font-size: 38px;
       }
 
       .content-section {
@@ -327,6 +391,12 @@
         width: 90%;
       }
 
+      .hero-section {
+        padding-top: 26px;
+        padding-bottom: 55px;
+        background-position: center top;
+      }
+
       .back-btn {
         width: 150px;
         height: 52px;
@@ -334,7 +404,7 @@
       }
 
       .hero {
-        padding: 55px 0;
+        padding: 70px 0 45px;
       }
 
       .hero-text h1 {
@@ -343,6 +413,23 @@
 
       .hero-text p {
         font-size: 18px;
+      }
+
+      .care-section {
+        padding: 60px 0 70px;
+      }
+
+      .section-heading {
+        margin-bottom: 38px;
+      }
+
+      .section-heading span {
+        font-size: 13px;
+        letter-spacing: 5px;
+      }
+
+      .section-heading h2 {
+        font-size: 29px;
       }
 
       .care-tab {
@@ -399,13 +486,11 @@
 
 <body>
 
-  <main class="page">
-
+  <!-- ================= SECTION 1 ================= -->
+  <section class="hero-section">
     <div class="container">
-
       <a href="index.html" class="back-btn">Back</a>
 
-      <!-- HERO -->
       <section class="hero">
         <div class="hero-text">
           <h1>
@@ -420,11 +505,20 @@
           </p>
         </div>
       </section>
+    </div>
+  </section>
 
-      <!-- CONTENT -->
+  <!-- ================= SECTION 2 ================= -->
+  <section class="care-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Panduan Perawatan</span>
+        <h2>Pilih Area Perawatan Menopause</h2>
+      </div>
+
       <section class="content-section">
 
-        <!-- LEFT MENU -->
         <div class="care-menu">
 
           <button class="care-tab fisik active" data-care="fisik">
@@ -447,7 +541,6 @@
 
         </div>
 
-        <!-- RIGHT RESULT -->
         <div class="result-card" id="resultCard">
 
           <p class="result-subtitle" id="resultSubtitle">
@@ -461,8 +554,7 @@
       </section>
 
     </div>
-
-  </main>
+  </section>
 
   <script>
     const careData = {
@@ -534,7 +626,7 @@
             desc: "Luangkan waktu berkualitas bersama"
           },
           {
-            title: "Bergabung Komunita",
+            title: "Bergabung Komunitas",
             desc: "Temukan komunitas yang saling mendukung"
           },
           {

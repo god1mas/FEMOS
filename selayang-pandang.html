@@ -12,7 +12,6 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles/style.css" />
 
   <style>
     * {
@@ -22,10 +21,15 @@
       font-family: "Poppins", sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
       overflow-x: hidden;
-      background: #f7b3c5;
+      background: #fff0f6;
+      color: #3d2131;
     }
 
     a {
@@ -34,341 +38,596 @@
     }
 
     .page {
-      width: 100%;
       min-height: 100vh;
-      background-image: url("img/selayang-bg.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      width: 100%;
+      padding: 34px 0 70px;
       position: relative;
-      padding: 34px 48px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.92) 0 8%, transparent 22%),
+        radial-gradient(circle at 78% 18%, rgba(255, 221, 235, 0.95) 0 12%, transparent 35%),
+        linear-gradient(135deg, #de6f98 0%, #f3a8bf 34%, #ffe7ee 67%, #fffaf9 100%);
     }
 
-    /* CONTENT PANEL */
-    .content-panel {
-      width: 62%;
-      min-height: 640px;
-
+    .page::before {
+      content: "";
       position: absolute;
-      right: 70px;
-      top: 185px;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-
-      padding: 45px 55px 40px;
-    }
-
-    .content-panel h1 {
-      font-size: 54px;
-      line-height: 1.1;
-      color: #8d0f49;
-      font-weight: 800;
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .main-content {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-    }
-
-    /* CENTER ILLUSTRATION */
-    .circle-visual {
-      width: 350px;
-      height: 350px;
-      flex: 0 0 350px;
-
+      width: 560px;
+      height: 560px;
+      left: -170px;
+      bottom: -190px;
       border-radius: 50%;
-      position: relative;
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.45) 0 30%, transparent 31%),
+        conic-gradient(from 140deg, rgba(255, 255, 255, 0.24), rgba(232, 94, 158, 0.45), rgba(255, 212, 225, 0.55), rgba(255, 255, 255, 0.24));
+      opacity: 0.95;
+      filter: blur(0.2px);
+    }
 
-      display: flex;
+    .page::after {
+      content: "";
+      position: absolute;
+      width: 470px;
+      height: 470px;
+      right: -120px;
+      top: -160px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.5) 0 28%, transparent 29%),
+        conic-gradient(from 40deg, rgba(255, 242, 247, 0.9), rgba(232, 94, 158, 0.28), rgba(255, 255, 255, 0.65), rgba(232, 94, 158, 0.35), rgba(255, 242, 247, 0.9));
+      opacity: 0.8;
+    }
+
+    .decor-wave {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 210px;
+      background:
+        radial-gradient(120% 105% at 30% 100%, rgba(218, 69, 130, 0.32) 0 48%, transparent 49%),
+        radial-gradient(120% 105% at 82% 100%, rgba(255, 153, 186, 0.55) 0 46%, transparent 47%);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .decor-leaf {
+      position: absolute;
+      width: 170px;
+      height: 210px;
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .decor-leaf.left {
+      left: 42px;
+      top: 265px;
+      transform: rotate(-18deg);
+    }
+
+    .decor-leaf.right {
+      right: 70px;
+      bottom: 98px;
+      transform: rotate(18deg) scaleX(-1);
+    }
+
+    .decor-leaf span {
+      position: absolute;
+      width: 54px;
+      height: 96px;
+      border-radius: 100% 0 100% 0;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.75), rgba(216, 55, 126, 0.55));
+      box-shadow: 0 8px 18px rgba(139, 29, 76, 0.12);
+    }
+
+    .decor-leaf span:nth-child(1) { left: 48px; top: 0; transform: rotate(14deg); }
+    .decor-leaf span:nth-child(2) { left: 20px; top: 62px; transform: rotate(-24deg); }
+    .decor-leaf span:nth-child(3) { left: 78px; top: 72px; transform: rotate(36deg); }
+    .decor-leaf span:nth-child(4) { left: 8px; top: 136px; transform: rotate(-36deg); }
+    .decor-leaf span:nth-child(5) { left: 92px; top: 144px; transform: rotate(48deg); }
+
+    .container {
+      width: 91%;
+      max-width: 1500px;
+      margin: 0 auto;
+      min-height: calc(100vh - 104px);
+      position: relative;
+      z-index: 3;
+    }
+
+    .back-btn {
+      width: 190px;
+      height: 62px;
+      border: 2px solid #2d1520;
+      border-radius: 999px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      font-size: 21px;
+      font-weight: 800;
+      color: #2d1520;
+      background: rgba(255, 255, 255, 0.23);
+      backdrop-filter: blur(8px);
+      transition: 0.3s ease;
+      position: relative;
+      z-index: 5;
     }
 
-    .circle-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 8px 12px rgba(180, 50, 100, 0.25));
+    .back-btn:hover {
+      background: #8a174f;
+      color: white;
+      border-color: #8a174f;
+      transform: translateY(-2px);
     }
 
-    /* MENU CARDS */
-    .info-menu {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      width: 100%;
-      max-width: 720px;
-    }
-
-    .info-card {
-      min-height: 380px;
-      padding: 20px 12px 24px;
-
-      border: 2px solid rgba(224, 140, 165, 0.7);
-      border-radius: 24px;
-
-      background: rgba(255, 244, 246, 0.42);
-      box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.28);
-
+    .hero-layout {
+      min-height: 690px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      padding-top: 42px;
+      gap: 34px;
+    }
 
-      cursor: pointer;
+    .intro-box {
+      max-width: 920px;
+      text-align: center;
+      padding: 12px 24px 0;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.42);
+      color: #8a174f;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 20px rgba(139, 29, 76, 0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .intro-box h1 {
+      font-size: 62px;
+      line-height: 1.12;
+      font-weight: 800;
+      color: #86124a;
+      margin-bottom: 18px;
+      letter-spacing: -1px;
+    }
+
+    .intro-box h1 span {
+      color: #e85e9e;
+    }
+
+    .intro-box p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 21px;
+      line-height: 1.55;
+      font-weight: 500;
+      color: #4b2638;
+    }
+
+    .menu-panel {
+      width: 100%;
+      max-width: 1120px;
+      border-radius: 58px;
+      padding: 44px 42px 42px;
+      background: rgba(255, 248, 251, 0.72);
+      border: 1.5px solid rgba(255, 255, 255, 0.78);
+      box-shadow:
+        0 24px 55px rgba(139, 29, 76, 0.16),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.26);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-panel::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(232, 94, 158, 0.11);
+      top: -80px;
+      right: -80px;
+    }
+
+    .menu-panel h2 {
+      position: relative;
+      text-align: center;
+      font-size: 38px;
+      line-height: 1.18;
+      font-weight: 800;
+      color: #86124a;
+      margin-bottom: 36px;
+    }
+
+    .menu-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .menu-card {
+      min-height: 310px;
+      padding: 20px 16px 24px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 239, 245, 0.64));
+      border: 1.5px solid rgba(232, 151, 176, 0.58);
+      box-shadow: 0 12px 25px rgba(139, 29, 76, 0.09);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       transition: 0.3s ease;
     }
 
-    .info-card:hover {
+    .menu-card:hover {
       transform: translateY(-8px);
-      background: rgba(255, 255, 255, 0.55);
-      box-shadow: 0 12px 24px rgba(180, 70, 110, 0.18);
+      box-shadow: 0 18px 32px rgba(139, 29, 76, 0.17);
+      background: rgba(255, 255, 255, 0.9);
     }
 
-    .info-card h3 {
-      min-height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: #8d0f49;
-      font-size: 17px;
-      line-height: 1.2;
-      font-weight: 800;
+    .menu-card h3 {
+      min-height: 52px;
       text-align: center;
-      margin-bottom: 26px;
+      font-size: 18px;
+      line-height: 1.18;
+      font-weight: 800;
+      color: #86124a;
+      margin-bottom: 20px;
     }
 
     .icon-circle {
-      width: 118px;
-      height: 118px;
+      width: 106px;
+      height: 106px;
       border-radius: 50%;
-
-      background: rgba(255, 247, 247, 0.65);
-      border: 2px solid rgba(234, 178, 190, 0.75);
-      box-shadow: 0 8px 14px rgba(184, 72, 110, 0.22);
-
+      background: #fff8fa;
+      border: 2px solid rgba(241, 188, 202, 0.9);
+      box-shadow:
+        0 10px 18px rgba(139, 29, 76, 0.14),
+        inset 0 -8px 16px rgba(232, 94, 158, 0.08);
       display: flex;
       align-items: center;
       justify-content: center;
-
-      margin-bottom: 60px;
+      margin-bottom: 34px;
+      overflow: hidden;
+      padding: 0;
     }
 
     .icon-circle img {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
     }
 
-    .line {
-      width: 78px;
-      height: 12px;
-      border-radius: 20px;
-      background: #ee93ad;
+    .menu-line {
+      width: 68px;
+      height: 10px;
+      border-radius: 999px;
+      background: #f2a0b8;
       margin-bottom: auto;
     }
 
-    .dot {
-      width: 28px;
-      height: 28px;
+    .menu-dot {
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      background: #d85a91;
-      box-shadow: 0 4px 8px rgba(180, 50, 100, 0.2);
-      margin-top: 52px;
+      background: #dd5b94;
+      margin-top: 40px;
+      box-shadow: 0 4px 9px rgba(139, 29, 76, 0.22);
     }
 
-    .info-card:nth-child(3) .dot {
-      background: #f08eaa;
+    .menu-card:nth-child(2) .menu-dot {
+      background: #c75fa5;
     }
 
-    .description {
-      color: #9c0000;
-      font-size: 22px;
-      font-weight: 500;
+    .menu-card:nth-child(3) .menu-dot {
+      background: #fa9ab8;
+    }
+
+    .menu-card:nth-child(4) .menu-dot {
+      background: #d75b92;
+    }
+
+    .caption {
+      position: relative;
+      max-width: 850px;
+      margin: 28px auto 0;
       text-align: center;
-      margin-top: 28px;
-      max-width: 900px;
+      color: #9f1020;
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 700;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 1400px) {
-      .content-panel {
-        width: 68%;
-        right: 30px;
-        top: 150px;
-      }
+    .detail-section {
+      background: #fff4f8;
+      padding: 72px 7%;
+    }
 
-      .content-panel h1 {
-        font-size: 44px;
-      }
+    .detail-container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
 
-      .circle-visual {
-        width: 280px;
-        height: 280px;
-        flex-basis: 280px;
-      }
+    .detail-title {
+      text-align: center;
+      font-size: 38px;
+      line-height: 1.2;
+      font-weight: 800;
+      color: #86124a;
+      margin-bottom: 34px;
+    }
 
-      .info-card {
-        min-height: 330px;
-      }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
 
-      .icon-circle {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 45px;
-      }
+    .detail-card {
+      background: white;
+      border-radius: 26px;
+      padding: 26px 22px;
+      border: 1px solid #ffd4e3;
+      box-shadow: 0 10px 22px rgba(139, 29, 76, 0.08);
+    }
 
-      .icon-circle img {
-        width: 60px;
-        height: 60px;
-      }
+    .detail-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #86124a;
+      margin-bottom: 12px;
+    }
+
+    .detail-card p {
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 500;
+      color: #4b2638;
     }
 
     @media (max-width: 1100px) {
-      .page {
-        background-position: left center;
-        padding: 30px 24px 70px;
+      .hero-layout {
+        padding-top: 38px;
       }
 
-      .content-panel {
-        position: relative;
-        top: auto;
-        right: auto;
-
-        width: 100%;
-        min-height: auto;
-        margin-top: 70px;
-
-        background: rgba(255, 238, 242, 0.76);
-        border-radius: 36px;
-        padding: 45px 28px;
+      .intro-box h1 {
+        font-size: 48px;
       }
 
-      .main-content {
-        flex-direction: column;
+      .intro-box p {
+        font-size: 19px;
       }
 
-      .info-menu {
+      .menu-grid,
+      .detail-grid {
         grid-template-columns: repeat(2, 1fr);
-        max-width: 680px;
+      }
+
+      .menu-panel {
+        border-radius: 44px;
       }
     }
 
     @media (max-width: 650px) {
+      .page {
+        padding: 22px 0 48px;
+      }
+
+      .container {
+        width: 92%;
+        min-height: auto;
+      }
+
       .back-btn {
-        width: 150px;
-        height: 52px;
-        font-size: 18px;
+        width: 138px;
+        height: 50px;
+        font-size: 17px;
       }
 
-      .content-panel h1 {
+      .hero-layout {
+        min-height: auto;
+        padding-top: 34px;
+        gap: 26px;
+      }
+
+      .intro-box {
+        padding: 6px 2px 0;
+      }
+
+      .badge {
+        font-size: 12px;
+        letter-spacing: 2px;
+        padding: 10px 18px;
+        margin-bottom: 18px;
+      }
+
+      .intro-box h1 {
         font-size: 32px;
-        margin-bottom: 35px;
       }
 
-      .circle-visual {
-        width: 220px;
-        height: 220px;
-        flex-basis: 220px;
+      .intro-box p {
+        font-size: 15px;
       }
 
-      .info-menu {
+      .menu-panel {
+        border-radius: 30px;
+        padding: 28px 16px;
+      }
+
+      .menu-panel h2 {
+        font-size: 25px;
+        margin-bottom: 24px;
+      }
+
+      .menu-grid,
+      .detail-grid {
         grid-template-columns: 1fr;
       }
 
-      .info-card {
-        min-height: 280px;
+      .menu-card {
+        min-height: auto;
+        padding: 22px 18px;
       }
 
-      .description {
-        font-size: 17px;
+      .menu-card h3 {
+        min-height: auto;
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      .icon-circle {
+        width: 92px;
+        height: 92px;
+        margin-bottom: 22px;
+      }
+
+      .icon-circle img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .menu-dot {
+        margin-top: 24px;
+      }
+
+      .caption {
+        font-size: 15px;
+      }
+
+      .detail-section {
+        padding: 54px 6%;
+      }
+
+      .detail-title {
+        font-size: 27px;
+      }
+
+      .decor-leaf {
+        opacity: 0.16;
       }
     }
   </style>
 </head>
 
 <body>
-
   <main class="page">
+    <div class="decor-leaf left">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
 
-    <a href="index.html" class="back-btn">Back</a>
+    <div class="decor-leaf right">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
 
-    <section class="content-panel">
+    <div class="decor-wave"></div>
 
-      <h1>Selayang Pandang Menopause</h1>
+    <div class="container">
+      <a href="index.html" class="back-btn">Back</a>
 
-      <div class="main-content">
+      <section class="hero-layout">
+        <div class="intro-box">
+          <span class="badge">Selayang Pandang</span>
 
-        <div class="circle-visual">
-          <img src="img/menopause-center.png" alt="Ilustrasi Menopause" />
+          <h1>
+            Kenali <span>Menopause</span><br />
+            dengan Lebih Tenang
+          </h1>
+
+          <p>
+            Pilih topik yang ingin anda pelajari untuk memahami menopause,
+            mulai dari pengertian, penyebab, gejala, hingga langkah pencegahan
+            yang dapat dilakukan sehari-hari.
+          </p>
         </div>
 
-        <div class="info-menu">
+        <div class="menu-panel">
+          <h2>Menu Informasi Menopause</h2>
 
-          <a href="#" class="info-card">
-            <h3>Definisi</h3>
+          <div class="menu-grid">
+            <a href="selayang-pandang/definisi.html" class="menu-card">
+              <h3>Definisi</h3>
+              <div class="icon-circle">
+                <img src="img/icon-definisi.png" alt="Icon Definisi" />
+              </div>
+              <span class="menu-line"></span>
+              <span class="menu-dot"></span>
+            </a>
 
-            <div class="icon-circle">
-              <img src="img/icon-definisi.png" alt="Definisi" />
-            </div>
+            <a href="selayang-pandang/penyebab.html" class="menu-card">
+              <h3>Penyebab</h3>
+              <div class="icon-circle">
+                <img src="img/icon-penyebab.png" alt="Icon Penyebab" />
+              </div>
+              <span class="menu-line"></span>
+              <span class="menu-dot"></span>
+            </a>
 
-            <div class="line"></div>
-            <div class="dot"></div>
-          </a>
+            <a href="selayang-pandang/gejala.html" class="menu-card">
+              <h3>Gejala &amp; Perawatan</h3>
+              <div class="icon-circle">
+                <img src="img/icon-gejala.png" alt="Icon Gejala dan Perawatan" />
+              </div>
+              <span class="menu-line"></span>
+              <span class="menu-dot"></span>
+            </a>
+          </div>
 
-          <a href="#" class="info-card">
-            <h3>Penyebab</h3>
-
-            <div class="icon-circle">
-              <img src="img/icon-penyebab.png" alt="Penyebab" />
-            </div>
-
-            <div class="line"></div>
-            <div class="dot"></div>
-          </a>
-
-          <a href="#" class="info-card">
-            <h3>Gejala & Keluhan</h3>
-
-            <div class="icon-circle">
-              <img src="img/icon-gejala.png" alt="Gejala dan Keluhan" />
-            </div>
-
-            <div class="line"></div>
-            <div class="dot"></div>
-          </a>
-
-          <a href="#" class="info-card">
-            <h3>Tindakan Pencegahan</h3>
-
-            <div class="icon-circle">
-              <img src="img/icon-pencegahan.png" alt="Tindakan Pencegahan" />
-            </div>
-
-            <div class="line"></div>
-            <div class="dot"></div>
-          </a>
-
+          <p class="caption">
+            Informasi disusun sederhana agar mudah dipahami dan dapat menjadi langkah awal
+            untuk merawat diri pada masa menopause.
+          </p>
         </div>
-
-      </div>
-
-      <p class="description">
-        Pahami Menopause secara menyeluruh untuk langkah yang lebih tepat bagi diri anda
-      </p>
-
-    </section>
-
+      </section>
+    </div>
   </main>
 
+  <section class="detail-section">
+    <div class="detail-container">
+      <h2 class="detail-title">Ringkasan Informasi</h2>
+
+      <div class="detail-grid">
+        <article class="detail-card" id="definisi">
+          <h3>Definisi</h3>
+          <p>
+            Menopause adalah fase alami ketika menstruasi berhenti secara permanen karena perubahan hormon reproduksi.
+          </p>
+        </article>
+
+        <article class="detail-card" id="penyebab">
+          <h3>Penyebab</h3>
+          <p>
+            Penyebab utamanya adalah penurunan fungsi ovarium sehingga produksi hormon estrogen dan progesteron berkurang.
+          </p>
+        </article>
+
+        <article class="detail-card" id="gejala">
+          <h3>Gejala &amp; Keluhan</h3>
+          <p>
+            Keluhan yang umum terjadi meliputi rasa panas, sulit tidur, mudah lelah, perubahan suasana hati, dan perubahan fisik.
+          </p>
+        </article>
+
+        <article class="detail-card" id="pencegahan">
+          <h3>Tindakan Pencegahan</h3>
+          <p>
+            Pola hidup sehat, olahraga ringan, tidur cukup, makan bergizi, dan dukungan keluarga dapat membantu mengurangi keluhan.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
