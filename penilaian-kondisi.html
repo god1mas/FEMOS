@@ -732,7 +732,7 @@
         <span class="hero-label">Penilaian Kondisi</span>
         <h1>Kenali Kondisi Anda<br />Selama Masa Menopause</h1>
         <p>
-          Pilih salah satu menu penilaian, jawab 15 pertanyaan berdasarkan kondisi 1 bulan terakhir, lalu sistem akan menghitung skor dan menampilkan hasil, ringkasan, fokus perawatan, serta rekomendasi yang sesuai. Pertanyaan diadaptasi dari area gejala pada MRS, MENQOL, dan Greene Climacteric Scale.
+            Silakan pilih jenis penilaian yang ingin Ibu cek, kemudian jawab 15 pertanyaan sederhana sesuai keadaan yang dirasakan dalam 1 bulan terakhir. Hasilnya akan membantu Ibu memahami kondisi tubuh, emosi, atau sosial, serta memberikan saran perawatan yang sesuai.
         </p>
       </section>
 
@@ -842,7 +842,7 @@
     const assessments = {
       fisik: {
         title: "Form Penilaian Kondisi Fisik",
-        description: "15 pertanyaan berikut diadaptasi dari area gejala fisik, vasomotor, somatik, dan urogenital pada instrumen MRS, MENQOL, dan Greene Climacteric Scale.",
+        description: "Jawab 15 pertanyaan berikut sesuai kondisi yang Ibu rasakan selama 1 bulan terakhir. Pertanyaan ini membantu mengenali keluhan fisik yang umum terjadi saat menopause, seperti rasa panas, gangguan tidur, nyeri tubuh, mudah lelah, dan perubahan kenyamanan tubuh.",
         label: "Hasil Penilaian Kondisi Fisik",
         conditionTitle: "Hasil Penilaian Kondisi Fisik",
         questions: [
@@ -864,23 +864,23 @@
         ],
         focus: {
           low: "Pertahankan pola hidup sehat dengan hidrasi cukup, aktivitas fisik ringan, pola tidur teratur, serta catat perubahan fisik yang mulai muncul.",
-          medium: "Fokus pada pengaturan tidur, manajemen hot flashes, olahraga ringan, nutrisi seimbang, dan pemantauan keluhan fisik yang mulai mengganggu.",
-          high: "Prioritaskan keluhan utama seperti hot flashes, gangguan tidur, nyeri tubuh, gangguan urogenital, serta konsultasi dengan tenaga kesehatan bila gejala sering mengganggu aktivitas."
+          medium: "Fokus pada pengaturan tidur, manajemen keringat malam, olahraga ringan, nutrisi seimbang, dan pemantauan keluhan fisik yang mulai mengganggu.",
+          high: "Prioritaskan keluhan utama seperti keringat malam, gangguan tidur, nyeri tubuh, gangguan urogenital, serta konsultasi dengan tenaga kesehatan bila gejala sering mengganggu aktivitas."
         },
         recommendations: {
           low: [
             ["Jaga rutinitas sehat", "Minum air cukup, konsumsi makanan bergizi, dan tetap aktif bergerak setiap hari."],
             ["Olahraga ringan", "Lakukan jalan kaki, peregangan, atau senam ringan 15-30 menit secara rutin."],
-            ["Catat gejala", "Pantau hot flashes, kualitas tidur, nyeri tubuh, dan keluhan urogenital agar perubahan mudah dikenali."]
+            ["Catat gejala", "Pantau keringat malam, kualitas tidur, nyeri tubuh, dan keluhan urogenital agar perubahan mudah dikenali."]
           ],
           medium: [
-            ["Manajemen hot flashes", "Gunakan pakaian nyaman, pilih bahan yang menyerap keringat, dan kenali pemicu seperti suhu panas, stres, kafein, atau makanan pedas."],
+            ["Manajemen keringat malam", "Gunakan pakaian nyaman, pilih bahan yang menyerap keringat, dan kenali pemicu seperti suhu panas, stres, kafein, atau makanan pedas."],
             ["Rutinitas tidur", "Tidur dan bangun di jam yang sama, kurangi layar sebelum tidur, serta buat kamar lebih sejuk dan nyaman."],
             ["Nutrisi dan tulang", "Perbanyak sayur, buah, protein, serta makanan tinggi kalsium dan vitamin D sesuai kebutuhan."],
             ["Aktivitas fisik teratur", "Pilih olahraga ringan yang konsisten, seperti jalan kaki, yoga ringan, atau peregangan."]
           ],
           high: [
-            ["Konsultasi kesehatan", "Bicarakan keluhan fisik dengan tenaga kesehatan, terutama bila hot flashes, nyeri, gangguan tidur, atau keluhan urogenital sering terjadi."],
+            ["Konsultasi kesehatan", "Bicarakan keluhan fisik dengan tenaga kesehatan, terutama bila keringat malam, nyeri, gangguan tidur, atau keluhan urogenital sering terjadi."],
             ["Rencana tidur intensif", "Buat jadwal tidur konsisten, kurangi kafein sore/malam, dan lakukan relaksasi sebelum tidur."],
             ["Perawatan area kewanitaan", "Diskusikan keluhan kering, nyeri, atau gangguan berkemih dengan tenaga kesehatan agar mendapat saran aman."],
             ["Dukungan gaya hidup", "Kombinasikan makan bergizi, hidrasi, aktivitas fisik, dan pengelolaan stres sesuai kemampuan tubuh."]
@@ -889,7 +889,7 @@
       },
       emosi: {
         title: "Form Penilaian Kondisi Emosi",
-        description: "15 pertanyaan berikut diadaptasi dari domain psikologis, kecemasan, suasana hati, konsentrasi, dan kualitas hidup pada MRS, MENQOL, dan Greene Climacteric Scale.",
+        description: "Jawab 15 pertanyaan berikut sesuai kondisi emosi yang Ibu rasakan selama 1 bulan terakhir. Pertanyaan ini membantu mengenali perubahan suasana hati, rasa cemas, mudah marah, sedih, sulit fokus, atau perasaan kurang nyaman selama masa menopause.",
         label: "Hasil Penilaian Kondisi Emosi",
         conditionTitle: "Hasil Penilaian Kondisi Emosi",
         questions: [
@@ -936,7 +936,7 @@
       },
       sosial: {
         title: "Form Penilaian Kondisi Sosial",
-        description: "15 pertanyaan berikut diadaptasi dari domain psikososial dan kualitas hidup menopause pada MENQOL, serta aspek psikologis yang memengaruhi relasi sosial pada MRS dan Greene Climacteric Scale.",
+        description: "Jawab 15 pertanyaan berikut sesuai pengalaman sosial yang Ibu rasakan selama 1 bulan terakhir. Pertanyaan ini membantu mengenali apakah perubahan menopause memengaruhi hubungan dengan keluarga, pasangan, teman, atau aktivitas sehari-hari.",
         label: "Hasil Penilaian Kondisi Sosial",
         conditionTitle: "Hasil Penilaian Kondisi Sosial",
         questions: [
@@ -1010,7 +1010,18 @@
     const recommendationTitle = document.getElementById("recommendationTitle");
     const recommendationList = document.getElementById("recommendationList");
 
-    let activeType = "fisik";
+    function getInitialTypeFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const selected = (params.get("gejala") || params.get("type") || "").toLowerCase();
+
+      if (["fisik", "emosi", "sosial"].includes(selected)) {
+        return selected;
+      }
+
+      return "fisik";
+    }
+
+    let activeType = getInitialTypeFromUrl();
     let lastLevel = null;
 
     function getLevel(total, maxScore) {
@@ -1187,6 +1198,14 @@
       window.print();
     });
 
+    function activateTab(type) {
+      tabs.forEach(tab => {
+        const isActive = tab.getAttribute("data-type") === type;
+        tab.classList.toggle("active", isActive);
+      });
+    }
+
+    activateTab(activeType);
     renderQuestions(activeType);
   </script>
 </body>
